@@ -47,11 +47,11 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
 
 * Please input the destination for the build output.
 * Please input the asset name (Any).
-* Please select type.
- * Grip &nbsp;&nbsp; >>> This is what the avatar holds.
- * Scene >>> This used as a 3D scene.
-<br>
-<br>
+* Please select Asset Type.
+| Asset Type | |
+| ---- | ---- |
+| Avatar Item | This is what the avatar holds. |
+| Scene | This used as a 3D scene. |
 
 3. You can export the folder (asset name) created with '2' using AirDrop or similar methods to any iOS device. Then, place it in Keyaki Studio > assets using the Files app.
 

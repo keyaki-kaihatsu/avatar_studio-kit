@@ -5,7 +5,7 @@ namespace AvatarStudio
     public enum AssetType : int
     {
         NoCharacteristics,
-        Grip,
+        AvatarItem,
         Scene
     }
 

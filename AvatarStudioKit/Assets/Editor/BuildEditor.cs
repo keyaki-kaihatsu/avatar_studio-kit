@@ -127,7 +127,7 @@ namespace AvatarStudio
                 {
                     EditorGUILayout.LabelField("#3 Please select type.", EditorStyles.wordWrappedLabel);
 
-                    EditorGUILayout.LabelField("Grip: hold it in the avatar's hand", EditorStyles.wordWrappedLabel);
+                    EditorGUILayout.LabelField("AvatarItem: Items to be held or attached to your avatar.", EditorStyles.wordWrappedLabel);
 
                     EditorGUILayout.LabelField("Scene: 3D Scene.", EditorStyles.wordWrappedLabel);
                 }
