@@ -92,7 +92,7 @@ namespace AvatarStudio
             {
                 titleContent = new GUIContent("Properties");
 
-                minSize = new Vector2(320, 500);
+                minSize = new Vector2(320, 390);
                 position = new Rect(Vector2.zero, minSize);
 
                 _outputPath = Application.dataPath + "/AssetBundles/iOS";
