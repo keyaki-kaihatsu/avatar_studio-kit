@@ -41,21 +41,16 @@ namespace AvatarStudio
             var inputPath = AssetDatabase.GetAssetOrScenePath(gameObject);
 
             // Asset Prefab
-            var assetType = AssetType.Scene;
             var ap = gameObject.GetComponent<AssetPrefab>();
             if (ap == null)
                 ap = gameObject.AddComponent<AssetPrefab>();
-            else
-                assetType = ap.type;
 
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
-            proptyModalWindow.Show(inputPath, assetType);
+            proptyModalWindow.Show(inputPath);
 
-            proptyModalWindow._completion = (outputPath, assetId, type) =>
+            proptyModalWindow._completion = (outputPath, assetId) =>
             {
-                ap.type = type;
-
                 // Save
                 EditorUtility.SetDirty(ap.gameObject);
 
@@ -80,18 +75,15 @@ namespace AvatarStudio
 
         public class BuildPropertyEditor : EditorWindow
         {
-            public Action<string, string, AssetType> _completion;
+            public Action<string, string> _completion;
 
             public string _outputPath;
 
             public string _assetId = "";
 
-            public AssetType _type;
-
-            public void Show(string inputPath, AssetType type)
+            public void Show(string inputPath)
             {
                 _assetId = Path.GetFileNameWithoutExtension(inputPath);
-                _type = type;
 
                 ShowUtility();
             }
@@ -123,27 +115,13 @@ namespace AvatarStudio
 
                 GUILayout.Space(20);
 
-                EditorGUILayout.BeginVertical();
-                {
-                    EditorGUILayout.LabelField("#3 Please select type.", EditorStyles.wordWrappedLabel);
-
-                    EditorGUILayout.LabelField("AvatarItem: Items to be held or attached to your avatar.", EditorStyles.wordWrappedLabel);
-
-                    EditorGUILayout.LabelField("Scene: 3D Scene.", EditorStyles.wordWrappedLabel);
-                }
-                EditorGUILayout.EndVertical();
-
-                _type = (AssetType)EditorGUILayout.EnumPopup(_type);
-
-                GUILayout.Space(20);
-
                 EditorGUILayout.BeginHorizontal();
                 {
                     EditorGUILayout.Space();
                     if (GUILayout.Button("Build", GUILayout.MaxWidth(200f)))
                     {
                         Close();
-                        _completion?.Invoke(_outputPath + "/" + _assetId, _assetId, _type);
+                        _completion?.Invoke(_outputPath + "/" + _assetId, _assetId);
                     }
                     EditorGUILayout.Space();
                 }
