@@ -42,7 +42,6 @@ https://github.com/vrm-c/UniVRM/releases
 **For VRM avatars**
 <br>
 (*) 'VRM Build' button.
-<br>
 
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-01.png">
 <br>
