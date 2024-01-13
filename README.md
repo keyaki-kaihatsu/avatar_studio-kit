@@ -29,7 +29,7 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
  Platform  >>>  iOS
 ```
 
-**For VRM avatars**
+>**For VRM avatars**
 <br>
 Please import unitypackage for VRM1.0.
 <br>
@@ -38,8 +38,8 @@ https://github.com/vrm-c/UniVRM/releases
 # Usage
 
 1. You right-click on any prefab and click on 'Asset Build' from the menu. (*)
-<br>
-**For VRM avatars**
+
+>**For VRM avatars**
 <br>
 (*) 'VRM Build' button.
 
@@ -59,7 +59,8 @@ https://github.com/vrm-c/UniVRM/releases
 
 3. You can export the folder (asset name) created with '2' using AirDrop or similar methods to any iOS device. Then, place it in Keyaki Studio > assets using the Files app. (*)
 <br>
-**For VRM avatars**
+
+>**For VRM avatars**
 <br>
 (*) Keyaki Studio > vrm_files
 <br>
