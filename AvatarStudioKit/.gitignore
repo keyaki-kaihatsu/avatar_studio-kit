@@ -89,3 +89,9 @@ crashlytics-build.properties
 
 /Logs*
 /NativePlugins*
+
+/Assets/lilToon*
+/Assets/RealToon*
+/Assets/UniGLTF*
+/Assets/VRM*
+/Assets/VRMShaders*
