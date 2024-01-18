@@ -25,7 +25,7 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
 
 **Unity**
 ```bash
- Version   >>>  2021.3.22f1
+ Version   >>>  2022.3.16f1
  Platform  >>>  iOS
 ```
 
