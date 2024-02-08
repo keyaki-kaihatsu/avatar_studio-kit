@@ -6,9 +6,9 @@ using UnityEditor;
 
 namespace AvatarStudio
 {
-    public class VRMBuildEditor
+    public class SceneBuildEditor
     {
-        [MenuItem("Assets/VRM Build", false, 0)]
+        [MenuItem("Assets/Scene Build", false, 0)]
         static public void OnAssets()
         {
             SetUp();
@@ -16,7 +16,7 @@ namespace AvatarStudio
             Build();
         }
 
-        [MenuItem("GameObject/VRM Build", false, 0)]
+        [MenuItem("GameObject/Scene Build", false, 0)]
         static public void OnGameObject()
         {
             SetUp();
@@ -33,8 +33,8 @@ namespace AvatarStudio
 
         static void Build()
         {
-            var gameObject = Selection.objects[0] as GameObject;
-            var inputPath = AssetDatabase.GetAssetOrScenePath(gameObject);
+            var scene = Selection.objects[0] as SceneAsset;
+            var inputPath = AssetDatabase.GetAssetOrScenePath(scene);
 
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
@@ -43,7 +43,7 @@ namespace AvatarStudio
             proptyModalWindow._completion = (outputPath, assetId) =>
             {
                 // Save
-                EditorUtility.SetDirty(gameObject);
+                EditorUtility.SetDirty(scene);
 
                 Directory.CreateDirectory(outputPath);
 
@@ -93,7 +93,7 @@ namespace AvatarStudio
 
             void Awake()
             {
-                titleContent = new GUIContent("VRM Build");
+                titleContent = new GUIContent("Asset Build");
 
                 minSize = new Vector2(320, 390);
                 position = new Rect(Vector2.zero, minSize);

@@ -29,10 +29,6 @@ namespace AvatarStudio
             var path = Application.dataPath + "/AssetBundles";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-
-            path = path + "/iOS";
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
         }
 
         static void Build()
@@ -54,6 +50,8 @@ namespace AvatarStudio
                 // Save
                 EditorUtility.SetDirty(ap.gameObject);
 
+                Directory.CreateDirectory(outputPath);
+
                 Build(inputPath, outputPath, assetId);
             };
         }
@@ -70,7 +68,17 @@ namespace AvatarStudio
             build.assetNames = new string[1] { inputPath };
             builds.Add(build);
 
-            BuildPipeline.BuildAssetBundles(outputPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.iOS);
+            var iOSPath = outputPath + "/iOS";
+            Directory.CreateDirectory(iOSPath);
+            BuildPipeline.BuildAssetBundles(iOSPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.iOS);
+
+            var osxPath = outputPath + "/StandaloneOSX";
+            Directory.CreateDirectory(osxPath);
+            BuildPipeline.BuildAssetBundles(osxPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneOSX);
+
+            var winPath = outputPath + "/StandaloneWindows64";
+            Directory.CreateDirectory(winPath);
+            BuildPipeline.BuildAssetBundles(winPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneWindows64);
         }
 
         public class BuildPropertyEditor : EditorWindow
@@ -95,7 +103,7 @@ namespace AvatarStudio
                 minSize = new Vector2(320, 390);
                 position = new Rect(Vector2.zero, minSize);
 
-                _outputPath = Application.dataPath + "/AssetBundles/iOS";
+                _outputPath = Application.dataPath + "/AssetBundles";
             }
 
             void OnGUI()
