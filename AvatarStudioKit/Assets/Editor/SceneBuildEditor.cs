@@ -67,6 +67,10 @@ namespace AvatarStudio
             Directory.CreateDirectory(iOSPath);
             BuildPipeline.BuildAssetBundles(iOSPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.iOS);
 
+            var androidPath = outputPath + "/Android";
+            Directory.CreateDirectory(androidPath);
+            BuildPipeline.BuildAssetBundles(androidPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.Android);
+
             var osxPath = outputPath + "/StandaloneOSX";
             Directory.CreateDirectory(osxPath);
             BuildPipeline.BuildAssetBundles(osxPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneOSX);
