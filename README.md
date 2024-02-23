@@ -3,7 +3,7 @@
 
 # AvatarStudio Kit
 
-This project is for export your 3D models or VRM avatars to **Keyaki Studio** (iOS App).
+This project is for export your 3D models or scene files to **Keyaki Studio**.
 
 <img src="https://img.shields.io/badge/-Unity-000000.svg?logo=unity&style=plastic">
 
@@ -17,6 +17,18 @@ Create dance videos and dramas by performing the three roles of acting, editing,
 <br>
 https://apps.apple.com/app/keyaki-studio/id6447358128
 
+*Google Play*
+<br>
+https://play.google.com/store/apps/details?id=com.keyakikaihatsu.keyakistudio
+
+*Windows & Mac*
+<br>
+[English]
+https://keyaki-kaihatsu.booth.pm/items/5428965
+<br>
+[Japanese]
+https://keyaki-kaihatsu.booth.pm/items/5381402　
+
 # Features
 
 Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **Asset Bundle** function.
@@ -29,16 +41,9 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
  Platform  >>>  iOS
 ```
 
->**For VRM avatars**  
-Please import unitypackage for VRM1.0.  
-https://github.com/vrm-c/UniVRM/releases
-
 # Usage
 
 1. You right-click on any prefab and click on 'Asset Build' from the menu. (*)
-
->**For VRM avatars**  
-(*) 'VRM Build' button.
 
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-01.png">
 <br>
@@ -47,7 +52,7 @@ https://github.com/vrm-c/UniVRM/releases
 2. Please fill in the input for this window.
 <br>
 
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-03.png">
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-02.png">
 <br>
 <br>
 
@@ -56,9 +61,6 @@ https://github.com/vrm-c/UniVRM/releases
 
 3. You can export the folder (asset name) created with '2' using AirDrop or similar methods to any iOS device. Then, place it in Keyaki Studio > assets using the Files app. (*)
 <br>
-
->**For VRM avatars**  
-(*) Keyaki Studio > vrm_files
 
 # Note
 
