@@ -49,6 +49,9 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
 <br>
 <br>
 
+**For Unity Scene File**  
+(*) 'Scene Build' button.
+
 2. Please fill in the input for this window.
 <br>
 
