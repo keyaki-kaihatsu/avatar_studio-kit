@@ -55,7 +55,7 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
 2. Please fill in the input for this window.
 <br>
 
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-02.png">
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-03.png">
 <br>
 <br>
 
