@@ -1,7 +1,7 @@
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/title.png">
 <br>
 
-# AvatarStudio Kit
+# KeyakiStudio Kit
 
 This project is for export your 3D models or scene files to **Keyaki Studio**.
 
