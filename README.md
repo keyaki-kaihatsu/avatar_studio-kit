@@ -5,6 +5,10 @@
 
 This project is for export your 3D models or scene files to **Keyaki Studio**.
 
+*Unity Package*
+<br>
+https://github.com/keyaki-kaihatsu/avatar_studio-kit/releases
+
 <img src="https://img.shields.io/badge/-Unity-000000.svg?logo=unity&style=plastic">
 
 # Keyaki Studio
