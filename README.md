@@ -10,7 +10,7 @@ This project is for export your 3D models or scene files to **Keyaki Studio**.
 [Unity Package]
 https://github.com/keyaki-kaihatsu/avatar_studio-kit/releases
 
-<img src="https://img.shields.io/badge/-Unity-000000.svg?logo=unity&style=plastic">
+<img src="https://skillicons.dev/icons?i=unity">
 
 # Keyaki Studio
 
@@ -19,14 +19,17 @@ Create dance videos and dramas by performing the three roles of acting, editing,
 <br>
 
 *App Store*
+<img src="https://skillicons.dev/icons?i=apple">
 <br>
 https://apps.apple.com/app/keyaki-studio/id6447358128
 
 *Google Play*
+<img src="https://skillicons.dev/icons?i=androidstudio">
 <br>
 https://play.google.com/store/apps/details?id=com.keyakikaihatsu.keyakistudio
 
 *Windows & Mac*
+<img src="https://skillicons.dev/icons?i=windows,apple">
 <br>
 [English]
 https://keyaki-kaihatsu.booth.pm/items/5428965
