@@ -26,7 +26,12 @@ namespace AvatarStudio
 
         static void SetUp()
         {
-            var path = Application.dataPath + "/AssetBundles";
+
+            var path = Application.dataPath + "/KeyakiStudioKit";
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            path = path + "/AssetBundles";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
@@ -107,12 +112,12 @@ namespace AvatarStudio
                 minSize = new Vector2(320, 390);
                 position = new Rect(Vector2.zero, minSize);
 
-                _outputPath = Application.dataPath + "/AssetBundles";
+                _outputPath = Application.dataPath + "/KeyakiStudioKit/AssetBundles";
             }
 
             void OnGUI()
             {
-                var titleTex = AssetDatabase.LoadAssetAtPath<Texture>("Assets/Editor/title.png");
+                var titleTex = AssetDatabase.LoadAssetAtPath<Texture>("Assets/KeyakiStudioKit/Editor/title.png");
                 EditorGUILayout.LabelField(new GUIContent(titleTex), GUILayout.Height(320 * 1600f / 2400f), GUILayout.Width(320));
 
                 EditorGUILayout.LabelField("#1 Please enter the output directory path.", EditorStyles.wordWrappedLabel);
