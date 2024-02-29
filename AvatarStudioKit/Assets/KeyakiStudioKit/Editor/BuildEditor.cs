@@ -30,28 +30,6 @@ namespace AvatarStudio
             Debug.LogError("[KeyakiStudioKit] Not Selected.");
         }
 
-        //[MenuItem("GameObject/Asset Build", false, 0)]
-        //static public void OnGameObject()
-        //{
-        //    SetUp();
-
-        //    if (Selection.objects.Length > 0)
-        //    {
-        //        if (Selection.objects[0] is GameObject obj)
-        //        {
-        //            AssetBuilder.Build(obj);
-        //            return;
-        //        }
-        //        else if (Selection.objects[0] is SceneAsset scene)
-        //        {
-        //            SceneBuilder.Build(scene);
-        //            return;
-        //        }
-        //    }
-
-        //    Debug.LogError("[KeyakiStudioKit] Not Selected.");
-        //}
-
         static void SetUp()
         {
 
@@ -93,7 +71,7 @@ namespace AvatarStudio
             };
         }
 
-        static public void AssetBuild(string inputPath, string outputPath, string assetId)
+        static void AssetBuild(string inputPath, string outputPath, string assetId)
         {
             var builds = new List<AssetBundleBuild>();
 
@@ -203,7 +181,7 @@ namespace AvatarStudio
             };
         }
 
-        static public void SceneBuild(string inputPath, string outputPath, string assetId)
+        static void SceneBuild(string inputPath, string outputPath, string assetId)
         {
             var builds = new List<AssetBundleBuild>();
 
