@@ -46,19 +46,16 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
 **Unity**
 ```bash
  Version   >>>  2022.3.16f1
- Platform  >>>  iOS
+ Platform  >>>  iOS, Android, Windows, macOS
 ```
 
 # Usage
 
 1. You right-click on any prefab and click on 'Asset Build' from the menu. (*)
 
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-01.png">
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-04.png">
 <br>
 <br>
-
-**For Unity Scene File**  
-(*) 'Scene Build' button.
 
 2. Please fill in the input for this window.
 <br>
@@ -85,4 +82,4 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
 
 # License
 
-"AvatarStudio Kit" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+"KeyakiStudio Kit" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
