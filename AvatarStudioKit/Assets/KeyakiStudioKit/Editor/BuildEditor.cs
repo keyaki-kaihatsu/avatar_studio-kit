@@ -75,8 +75,9 @@ namespace AvatarStudio
         {
             var builds = new List<AssetBundleBuild>();
 
-            if (!Directory.Exists(outputPath))
-                Directory.CreateDirectory(outputPath);
+            if (Directory.Exists(outputPath))
+                Directory.Delete(outputPath, true);
+            Directory.CreateDirectory(outputPath);
 
             var build = new AssetBundleBuild();
             build.assetBundleName = assetId.ToLower() + ".bundle";
@@ -118,6 +119,9 @@ namespace AvatarStudio
                 var manifest = new AssetManifestData();
                 manifest.asset_id = assetId;
                 File.WriteAllText(outputPath + "/manifest.txt", JsonUtility.ToJson(manifest));
+
+                if (File.Exists(outputPath + ".zip"))
+                    File.Delete(outputPath + ".zip");
 
                 ZipFile.CreateFromDirectory(outputPath, outputPath + ".zip");
             }
