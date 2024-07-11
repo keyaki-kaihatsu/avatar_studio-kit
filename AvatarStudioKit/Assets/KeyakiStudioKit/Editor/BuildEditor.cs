@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using UnityEngine;
 using UnityEditor;
+using UniVRM10;
 
 namespace AvatarStudio
 {
@@ -18,8 +19,17 @@ namespace AvatarStudio
             {
                 if (Selection.objects[0] is GameObject obj)
                 {
-                    AssetBuilder.Build(obj);
-                    return;
+                    if (obj.GetComponent<Vrm10Instance>() != null)
+                    {
+                        // VRM
+                        VRMBuilder.VRMBuild(obj);
+                        return;
+                    }
+                    else
+                    {
+                        AssetBuilder.Build(obj);
+                        return;
+                    }
                 }
                 else if (Selection.objects[0] is SceneAsset scene)
                 {
@@ -146,6 +156,37 @@ namespace AvatarStudio
             {
                 // Save
                 EditorUtility.SetDirty(scene);
+
+                Directory.CreateDirectory(outputPath);
+
+                AssetBuild(inputPath, outputPath, assetId);
+            };
+        }
+    }
+
+    #endregion
+
+    #region -- VRM Build --
+
+    public class VRMBuilder : AssetBuilder
+    {
+        static public void VRMBuild(GameObject obj)
+        {
+            var inputPath = AssetDatabase.GetAssetOrScenePath(obj);
+
+            // Avatar Prefab
+            var ap = obj.GetComponent<AvatarPrefab>();
+            if (ap == null)
+                ap = obj.AddComponent<AvatarPrefab>();
+
+            // Property Window
+            var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
+            proptyModalWindow.Show(inputPath);
+
+            proptyModalWindow._completion = (outputPath, assetId) =>
+            {
+                // Save
+                EditorUtility.SetDirty(ap.gameObject);
 
                 Directory.CreateDirectory(outputPath);
 
