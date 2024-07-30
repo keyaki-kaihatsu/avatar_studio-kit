@@ -49,6 +49,12 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
  Platform  >>>  iOS, Android, Windows, macOS
 ```
 
+**VRM**
+
+Please download & import unitypackage for **VRM1.0**.
+<br>
+https://github.com/vrm-c/UniVRM/releases
+
 # Usage
 
 1. You right-click on any prefab and click on 'Asset Build' from the menu. (*)
