@@ -43,11 +43,7 @@ namespace AvatarStudio
 
         static void SetUp()
         {
-            var path = Application.dataPath + "/KeyakiStudioKit";
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            path = path + "/AssetBundles";
+            var path = Config.ROOT_PATH;
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
@@ -224,7 +220,7 @@ namespace AvatarStudio
             minSize = new Vector2(320, 520);
             position = new Rect(Vector2.zero, minSize);
 
-            _outputPath = Application.dataPath + "/KeyakiStudioKit/AssetBundles";
+            _outputPath = Config.ROOT_PATH;
 
             if (PlayerPrefs.HasKey("prefrence"))
             {
