@@ -4,13 +4,12 @@ using System.IO;
 using System.IO.Compression;
 using UnityEngine;
 using UnityEditor;
-using UniVRM10;
 
 namespace AvatarStudio
 {
     public class BuildEditor
     {
-        [MenuItem("Assets/Asset Build", false, 0)]
+        [MenuItem("Assets/KeyakiStudio/Asset Build", false, 0)]
         static public void OnAssets()
         {
             SetUp();
@@ -19,21 +18,40 @@ namespace AvatarStudio
             {
                 if (Selection.objects[0] is GameObject obj)
                 {
-                    if (obj.GetComponent<Vrm10Instance>() != null)
-                    {
-                        // VRM
-                        VRMBuilder.VRMBuild(obj);
-                        return;
-                    }
-                    else
-                    {
-                        AssetBuilder.Build(obj);
-                        return;
-                    }
+                    AssetBuilder.Build(obj);
+                    return;
                 }
                 else if (Selection.objects[0] is SceneAsset scene)
                 {
                     SceneBuilder.Build(scene);
+                    return;
+                }
+            }
+
+            Debug.LogError("[KeyakiStudioKit] Not Selected.");
+        }
+
+        static void SetUp()
+        {
+            var path = Config.ROOT_PATH;
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+    }
+
+    public class AvatarBuildEditor
+    {
+        [MenuItem("Assets/KeyakiStudio/Asset Build (Avatar)", false, 0)]
+        static public void OnAssets()
+        {
+            SetUp();
+
+            if (Selection.objects.Length > 0)
+            {
+                if (Selection.objects[0] is GameObject obj)
+                {
+                    // VRM
+                    VRMBuilder.VRMBuild(obj);
                     return;
                 }
             }
