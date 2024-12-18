@@ -82,7 +82,7 @@ namespace AvatarStudio
 
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
-            proptyModalWindow.Show(inputPath);
+            proptyModalWindow.Show("Asset Build", inputPath);
 
             proptyModalWindow._completion = (outputPath, assetId) =>
             {
@@ -92,6 +92,8 @@ namespace AvatarStudio
                 Directory.CreateDirectory(outputPath);
 
                 AssetBuild(inputPath, outputPath, assetId);
+
+                System.Diagnostics.Process.Start(outputPath);
             };
         }
 
@@ -164,7 +166,7 @@ namespace AvatarStudio
 
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
-            proptyModalWindow.Show(inputPath);
+            proptyModalWindow.Show("Scene Build", inputPath);
 
             proptyModalWindow._completion = (outputPath, assetId) =>
             {
@@ -174,6 +176,8 @@ namespace AvatarStudio
                 Directory.CreateDirectory(outputPath);
 
                 AssetBuild(inputPath, outputPath, assetId);
+
+                System.Diagnostics.Process.Start(outputPath);
             };
         }
     }
@@ -195,7 +199,7 @@ namespace AvatarStudio
 
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
-            proptyModalWindow.Show(inputPath);
+            proptyModalWindow.Show("VRM Build", inputPath);
 
             proptyModalWindow._completion = (outputPath, assetId) =>
             {
@@ -205,6 +209,8 @@ namespace AvatarStudio
                 Directory.CreateDirectory(outputPath);
 
                 AssetBuild(inputPath, outputPath, assetId);
+
+                System.Diagnostics.Process.Start(outputPath);
             };
         }
     }
@@ -224,8 +230,10 @@ namespace AvatarStudio
 
         public Preference _preference;
 
-        public void Show(string inputPath)
+        public void Show(string title, string inputPath)
         {
+            titleContent = new GUIContent(title);
+
             _assetId = Path.GetFileNameWithoutExtension(inputPath);
 
             ShowUtility();
@@ -233,8 +241,6 @@ namespace AvatarStudio
 
         void Awake()
         {
-            titleContent = new GUIContent("Asset Build");
-
             minSize = new Vector2(320, 520);
             position = new Rect(Vector2.zero, minSize);
 

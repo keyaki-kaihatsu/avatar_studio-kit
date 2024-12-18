@@ -4,7 +4,7 @@ namespace AvatarStudio
 {
     public class AssetPrefab : MonoBehaviour
     {
-        #region -- Public Property --
+        #region -- Public Properties --
 
         [Header("Options")]
 
