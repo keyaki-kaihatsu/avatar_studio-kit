@@ -41,7 +41,7 @@ namespace AvatarStudio
 
     public class AvatarBuildEditor
     {
-        [MenuItem("Assets/KeyakiStudio/Asset Build (Avatar)", false, 0)]
+        [MenuItem("Assets/KeyakiStudio/Asset Build (Avatar)", false, 1)]
         static public void OnAssets()
         {
             SetUp();

@@ -1,12 +1,15 @@
-using UnityEngine;
-using UnityEditor;
 using System.IO;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.Animations;
+using UnityEditor;
+using UnityEditor.Animations;
 
 namespace AvatarStudio
 {
     public class AnimationClipEditor : MonoBehaviour
     {
-        [MenuItem("Assets/KeyakiStudio/Export Animation Clip", false, 0)]
+        [MenuItem("Assets/KeyakiStudio/Export Animation/Create Animator Controller", false, 2)]
         static public void OnAssets()
         {
             if (Selection.objects.Length > 0)
@@ -17,10 +20,21 @@ namespace AvatarStudio
                     var clip = GenerateAnimationClip(json);
 
                     var path = AssetDatabase.GetAssetPath(Selection.objects[0].GetInstanceID());
-                    path = Path.GetDirectoryName(path) + "/" + Path.GetFileNameWithoutExtension(path) + ".anim";
+                    var animPath = Path.GetDirectoryName(path) + "/" + Path.GetFileNameWithoutExtension(path) + ".anim";
                     
-                    AssetDatabase.CreateAsset(clip, path);
+                    AssetDatabase.CreateAsset(clip, animPath);
                     AssetDatabase.Refresh();
+
+                    // Animator Controllerの生成
+                    var cntlPath = Path.GetDirectoryName(path) + "/" + Path.GetFileNameWithoutExtension(path) + ".controller";
+                    var animCntl = AnimatorController.CreateAnimatorControllerAtPath(cntlPath);
+                    var animCntlRoot = animCntl.layers[0].stateMachine;
+                    var animCntlState = animCntlRoot.AddState(clip.name);
+                    animCntlState.motion = clip;
+                    animCntlRoot.defaultState = animCntlState;
+
+                    AssetDatabase.SaveAssets();
+
                     return;
                 }
             }
@@ -55,6 +69,46 @@ namespace AvatarStudio
             }
 
             return clip;
+        }
+    }
+
+    public class AnimationClipSetUpEditor : MonoBehaviour
+    {
+        [MenuItem("GameObject/KeyakiStudio/Animation Clip/Set up VRM")]
+        static public void OnGameObject()
+        {
+            if (Selection.objects.Length > 0)
+            {
+                if (Selection.objects[0] is GameObject obj)
+                {
+                    // Animator以外（VRMInstance）を無効化
+                    obj.GetComponents<Behaviour>().Where(b => !(b is Animator)).ToList().ForEach(b => b.enabled = false);
+
+                    // Parent Constraint
+                    var animator = obj.GetComponent<Animator>();
+                    var hips = animator.GetBoneTransform(HumanBodyBones.Hips);
+
+                    var constraint = hips.GetComponent<ParentConstraint>();
+                    if (constraint == null)
+                    {
+                        constraint = hips.gameObject.AddComponent<ParentConstraint>();
+                        constraint.constraintActive = true;
+                        constraint.locked = true;
+
+                        var constObj = new GameObject();
+                        constObj.name = "ConstraintSource";
+                        constObj.transform.SetParent(animator.transform, false);
+
+                        var constSource = new ConstraintSource();
+                        constSource.sourceTransform = constObj.transform;
+                        constraint.AddSource(constSource);
+                    }
+
+                    return;
+                }
+            }
+
+            Debug.LogError("[KeyakiStudioKit] Not Selected.");
         }
     }
 }
