@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
@@ -9,7 +10,7 @@ namespace AvatarStudio
 {
     public class BuildEditor
     {
-        [MenuItem("Assets/KeyakiStudio/Asset Build", false, 0)]
+        [MenuItem("Assets/KeyakiStudio/Asset Build (From Prefab)", false, 0)]
         static public void OnAssets()
         {
             SetUp();
@@ -41,7 +42,7 @@ namespace AvatarStudio
 
     public class AvatarBuildEditor
     {
-        [MenuItem("Assets/KeyakiStudio/Asset Build (Avatar)", false, 1)]
+        [MenuItem("Assets/KeyakiStudio/Avatar Asset Build (From VRM)", false, 1)]
         static public void OnAssets()
         {
             SetUp();
@@ -66,6 +67,62 @@ namespace AvatarStudio
                 Directory.CreateDirectory(path);
         }
     }
+
+    public class AnimationBuildEditor
+    {
+        [MenuItem("Assets/KeyakiStudio/Animation Asset Build (From VRM Prefab + Animation)", false, 2)]
+        static public void OnAssets()
+        {
+            SetUp();
+
+            if (Selection.objects.Length > 0)
+            {
+                if (Selection.objects[0] is GameObject obj)
+                {
+                    // VRM
+                    VRMBuilder.AnimationBuild(obj);
+                    return;
+                }
+            }
+
+            Debug.LogError("[KeyakiStudioKit] Not Selected.");
+        }
+
+        static void SetUp()
+        {
+            var path = Config.ROOT_PATH;
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+    }
+
+    // public class AnimationBuildEditor
+    // {
+    //     [MenuItem("Assets/KeyakiStudio/Animation Asset Build (From Prefab)", false, 2)]
+    //     static public void OnAssets()
+    //     {
+    //         SetUp();
+
+    //         if (Selection.objects.Length > 0)
+    //         {
+    //             if (Selection.objects[0] is GameObject obj)
+    //             {
+    //                 // Animation Clip
+    //                 AnimationBuilder.AnimationBuild(obj);
+    //                 return;
+    //             }
+    //         }
+
+    //         Debug.LogError("[KeyakiStudioKit] Not Selected.");
+    //     }
+
+    //     static void SetUp()
+    //     {
+    //         var path = Config.ROOT_PATH;
+    //         if (!Directory.Exists(path))
+    //             Directory.CreateDirectory(path);
+    //     }
+    // }
 
     #region -- Asset Build --
 
@@ -97,7 +154,7 @@ namespace AvatarStudio
             };
         }
 
-        protected static void AssetBuild(string inputPath, string outputPath, string assetId)
+        protected static void AssetBuild(string inputPath, string outputPath, string assetId, BuildAssetBundleOptions option =  BuildAssetBundleOptions.ChunkBasedCompression)
         {
             var builds = new List<AssetBundleBuild>();
 
@@ -116,28 +173,28 @@ namespace AvatarStudio
             {
                 var iOSPath = outputPath + "/iOS";
                 Directory.CreateDirectory(iOSPath);
-                BuildPipeline.BuildAssetBundles(iOSPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.iOS);
+                BuildPipeline.BuildAssetBundles(iOSPath, builds.ToArray(), option, BuildTarget.iOS);
             }
 
             if (pref.enabled_build_android)
             {
                 var androidPath = outputPath + "/Android";
                 Directory.CreateDirectory(androidPath);
-                BuildPipeline.BuildAssetBundles(androidPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.Android);
+                BuildPipeline.BuildAssetBundles(androidPath, builds.ToArray(), option, BuildTarget.Android);
             }
 
             if (pref.enabled_build_standalone_osx)
             {
                 var osxPath = outputPath + "/StandaloneOSX";
                 Directory.CreateDirectory(osxPath);
-                BuildPipeline.BuildAssetBundles(osxPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneOSX);
+                BuildPipeline.BuildAssetBundles(osxPath, builds.ToArray(), option, BuildTarget.StandaloneOSX);
             }
 
             if (pref.enabled_build_standalone_windows64)
             {
                 var winPath = outputPath + "/StandaloneWindows64";
                 Directory.CreateDirectory(winPath);
-                BuildPipeline.BuildAssetBundles(winPath, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneWindows64);
+                BuildPipeline.BuildAssetBundles(winPath, builds.ToArray(), option, BuildTarget.StandaloneWindows64);
             }
 
             if (pref.enabled_compression)
@@ -213,10 +270,78 @@ namespace AvatarStudio
                 System.Diagnostics.Process.Start(outputPath);
             };
         }
+
+        static public void AnimationBuild(GameObject obj)
+        {
+            var inputPath = AssetDatabase.GetAssetOrScenePath(obj);
+
+            // Animator以外（VRMInstance）を無効化
+            obj.GetComponents<Behaviour>().Where(b => !(b is Animator)).ToList().ForEach(b => b.enabled = false);
+
+            // Property Window
+            var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
+            proptyModalWindow.Show("Animation Build", inputPath);
+
+            proptyModalWindow._completion = (outputPath, assetId) =>
+            {
+                // Save
+                EditorUtility.SetDirty(obj);
+
+                Directory.CreateDirectory(outputPath);
+
+                AssetBuild(inputPath, outputPath, assetId);
+
+                System.Diagnostics.Process.Start(outputPath);
+            };
+        }
     }
 
     #endregion
 
+    // #region -- Animation Build --
+
+    // public class AnimationBuilder : AssetBuilder
+    // {
+    //     static public void AnimationBuild(UnityEngine.Object obj)
+    //     {
+    //         // Animation Clip
+    //         var path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
+    //         var assets = AssetDatabase.LoadAllAssetsAtPath(path);
+
+    //         // var clip0 = assets.ToList().Find(a => a is AnimationClip);
+    //         // var clip = UnityEngine.Object.Instantiate(clip0);
+
+    //         var clip0 = assets.ToList().Find(a => a is AnimationClip);
+    //         var clip = new AnimationClip();
+    //         var bindings = AnimationUtility.GetCurveBindings(clip0 as AnimationClip);
+    //         foreach (var binding in bindings.Where(b => !(b.propertyName.StartsWith("material.") || b.propertyName.Contains("_MainTex"))))
+    //         {
+    //             var curve = AnimationUtility.GetEditorCurve(clip, binding);
+    //             clip.SetCurve(binding.path, binding.type, binding.propertyName, curve);
+    //         }
+
+    //         var animPath = Path.GetDirectoryName(path) + "/" + Path.GetFileNameWithoutExtension(path) + ".anim";
+    //         AssetDatabase.CreateAsset(clip, animPath);
+    //         AssetDatabase.SaveAssets();
+    //         AssetDatabase.Refresh();
+
+    //         // Property Window
+    //         var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
+    //         proptyModalWindow.Show("Animation Build", animPath);
+
+    //         proptyModalWindow._completion = (outputPath, assetId) =>
+    //         {
+    //             // Save
+    //             Directory.CreateDirectory(outputPath);
+
+    //             AssetBuild(animPath, outputPath, assetId, BuildAssetBundleOptions.None);
+
+    //             System.Diagnostics.Process.Start(outputPath);
+    //         };
+    //     }
+    // }
+
+    // #endregion
 
     #region -- BuildPropertyEditor --
 

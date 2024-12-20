@@ -9,7 +9,7 @@ namespace AvatarStudio
 {
     public class AnimationClipEditor : MonoBehaviour
     {
-        [MenuItem("Assets/KeyakiStudio/Export Animation/Create Animator Controller", false, 2)]
+        [MenuItem("Assets/KeyakiStudio/Export Animation/Create Animator Controller", false, 100)]
         static public void OnAssets()
         {
             if (Selection.objects.Length > 0)
