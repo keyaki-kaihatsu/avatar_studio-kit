@@ -45,7 +45,7 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
 
 **Unity**
 ```bash
- Version   >>>  2022.3.16f1
+ Version   >>>  Unity 6 (6000.0.25f1)
  Platform  >>>  iOS, Android, Windows, macOS
 ```
 
@@ -57,21 +57,23 @@ https://github.com/vrm-c/UniVRM/releases
 
 # Usage
 
-1. You right-click on any prefab and click on 'Asset Build' from the menu. (*)
+1. You right-click on any prefab and click on 'KeyakiStudio > Asset Build (From Prefab)' from the menu. (*)
 
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-04.png">
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-05.png">
 <br>
 <br>
 
 2. Please fill in the input for this window.
 <br>
 
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-03.png">
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-06.png">
 <br>
 <br>
 
 * Please input the destination for the build output.
-* Please input the asset name (Any).
+* Please input the asset name. (Any)
+* Please select the required OS. (Any)
+* Please select if ZIP compression is required. (Any)
 
 3. You can export the folder (asset name) created with '2' using AirDrop or similar methods to any iOS device. Then, place it in Keyaki Studio > assets using the Files app. (*)
 <br>
