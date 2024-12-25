@@ -13,7 +13,6 @@
 https://github.com/keyaki-kaihatsu/avatar_studio-kit/releases
 
 <img src="https://skillicons.dev/icons?i=unity">
-<br>
 
 # ケヤキスタジオ
 
