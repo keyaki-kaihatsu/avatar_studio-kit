@@ -79,7 +79,6 @@ https://github.com/vrm-c/UniVRM/releases
 * ZIP圧縮が必要な場合は選択してください。展開先ではZIP解答してください。(任意)
 
 4. プレハブをAssetBuild化すると、ダイアログの#1のフォルダに出力されます。出力されたフォルダごとAirDropやGoogleDrive等でケヤキスタジオアプリをインストール済みのデバイスへ送信してください。「Keyaki Studio > assetsフォルダ」にフォルダごとコピーしてください。
-<br>
 参考 → https://keyaki-kaihatsu.fanbox.cc/posts/7841803
 <br>
 
