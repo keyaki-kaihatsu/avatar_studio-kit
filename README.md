@@ -3,19 +3,22 @@
 
 # KeyakiStudio Kit
 
-This project is for export your 3D models or scene files to **Keyaki Studio**.
+[English version here (英語版はこちら)](locals/README_en.md)
 
-*Please import this unitypackage.*
+このプロジェクトは**ケヤキスタジオ**向けに3Dモデルや3Dシーンをエクスポートするためのプロジェクトです。
+
+*こちらのunitypackageをご利用ください。*
 <br>
 [Unity Package]
 https://github.com/keyaki-kaihatsu/avatar_studio-kit/releases
 
 <img src="https://skillicons.dev/icons?i=unity">
+<br>
+<br>
 
-# Keyaki Studio
+# ケヤキスタジオ
 
-'Keyaki Studio' is an editor that allows you to create animations using avatars.
-Create dance videos and dramas by performing the three roles of acting, editing, and filming.
+ケヤキスタジオはアバターを使って3Dアニメ制作ができるアプリです。全ての登場人物の演技・3D舞台の編集・撮影など、アニメ制作に必要な工程をアプリで作業できます。
 <br>
 
 *App Store*
@@ -31,17 +34,17 @@ https://play.google.com/store/apps/details?id=com.keyakikaihatsu.keyakistudio
 *Windows & Mac*
 <img src="https://skillicons.dev/icons?i=windows,apple">
 <br>
-[English]
+[英語版]
 https://keyaki-kaihatsu.booth.pm/items/5428965
 <br>
-[Japanese]
+[日本語版]
 https://keyaki-kaihatsu.booth.pm/items/5381402　
 
-# Features
+# 概要
 
-Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **Asset Bundle** function.
+このプロジェクトを使うと、UnityのAssetBundle機能を使ってUnityのプレハブをケヤキスタジオにインポートすることができます。
 
-# Requirement
+# 環境
 
 **Unity**
 ```bash
@@ -51,43 +54,47 @@ Using this project, you can export prefabs to 'Keyaki Studio' using Unity's **As
 
 **VRM**
 
-Please download & import unitypackage for **VRM1.0**.
+VRMファイル（アバター用のファイル）をAssetBundle化すると、VRMファイルを利用するよりもパフォーマンスが上がります。VRMファイルをAssetBundle化するには**VRM1.0**のunitypackageをインポートしてください。
 <br>
 https://github.com/vrm-c/UniVRM/releases
 
-# Usage
+# 利用方法
 
-1. You right-click on any prefab and click on 'KeyakiStudio > Asset Build (From Prefab)' from the menu. (*)
+1. Unityプロジェクトを新規作成し、unitypackageをインポートしてください。
+
+2. Projectウィンドウから任意のプレハブを右クリックしてください。メニューから「KeyakiStudio > Asset Build (From Prefab)」を選択してください。
 
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-05.png">
 <br>
 <br>
 
-2. Please fill in the input for this window.
+3. ダイアログの入力をしてください。特に設定の必要がなければそのまま「Build」ボタンを押下してください。
 <br>
 
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-06.png">
 <br>
 <br>
 
-* Please input the destination for the build output.
-* Please input the asset name. (Any)
-* Please select the required OS. (Any)
-* Please select if ZIP compression is required. (Any)
+* ビルド出力先を入力してください。
+* アセット名を入力してください。(任意)
+* アセットを展開したいデバイスOSを選択してください。(任意)
+* ZIP圧縮が必要な場合は選択してください。展開先ではZIP解答してください。(任意)
 
-3. You can export the folder (asset name) created with '2' using AirDrop or similar methods to any iOS device. Then, place it in Keyaki Studio > assets using the Files app. (*)
+4. プレハブをAssetBuild化すると、ダイアログの#1のフォルダに出力されます。出力されたフォルダごとAirDropやGoogleDrive等でケヤキスタジオアプリをインストール済みのデバイスへ送信してください。「Keyaki Studio > assetsフォルダ」にフォルダごとコピーしてください。
+<br>
+参考 → https://keyaki-kaihatsu.fanbox.cc/posts/7841803
 <br>
 
-# Note
+# 注意
 
-* You cannot add scripts or shaders.
-* You cannot use asset names that are the same.
+* スクリプトやシェーダーをAssetBuild化することはできません。
+* 同名のアセット名を使うことはできません。
 
-# Author
+# 運営
 
-* Yuta Ueda / Keyaki Kaihatsu
+* Yuta Ueda / ケヤキ開発
 * https://twitter.com/keyaki_kaihatsu
 
-# License
+# ライセンス
 
 "KeyakiStudio Kit" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
