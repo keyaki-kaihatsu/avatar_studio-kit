@@ -64,14 +64,14 @@ https://github.com/vrm-c/UniVRM/releases
 
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-05.png">
 <br>
-● Asset Build (From Prefab)
+・ Asset Build (From Prefab)
 <br>
 <small>
     ∟ プレハブをAssetBundle化します。アプリのassetsフォルダにコピーしてください。
 </small>
 <br>
 <br>
-● Avatar Asset Build (From VRM)
+・ Avatar Asset Build (From VRM)
 <br>
 <small>
     ∟ VRMをAssetBundle化します。アプリのvrm_filesフォルダにコピーしてください。
@@ -80,7 +80,7 @@ https://github.com/vrm-c/UniVRM/releases
 </small>
 <br>
 <br>
-● Animation Asset Build (From VRM Prefab + Animation)
+・ Animation Asset Build (From VRM Prefab + Animation)
 <br>
 <small>
     ∟ アニメーション付きVRMをAssetBundle化します。アプリのanimationsフォルダにコピーしてください。
@@ -93,7 +93,7 @@ https://github.com/vrm-c/UniVRM/releases
 <br>
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-07.png">
 <br>
-● Export Animation > Create Animator Controller
+・ Export Animation > Create Animator Controller
 <br>
 <small>
     ∟ この機能はAssetBuildではありません。
