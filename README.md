@@ -66,6 +66,42 @@ https://github.com/vrm-c/UniVRM/releases
 <br>
 <br>
 
+* Asset Build (From Prefab)
+<br>
+<small>
+    ∟ プレハブをAssetBundle化します。アプリのassetsフォルダにコピーしてください。
+</small>
+* Avatar Asset Build (From VRM)
+<br>
+<small>
+    ∟ VRMをAssetBundle化します。アプリのvrm_filesフォルダにコピーしてください。
+    <br>
+    ∟ VRoidHub連携やVRMファイルを利用したときに、パフォーマンスが悪い場合にご活用ください。
+</small>
+* Animation Asset Build (From VRM Prefab + Animation)
+<br>
+<small>
+    ∟ アニメーション付きVRMをAssetBundle化します。アプリのanimationsフォルダにコピーしてください。
+    <br>
+    ∟ AnimatorのAnimationControllerのデフォルト状態に任意のアニメーションを設定し、Motion Timeに「MotionTime」パラメータを設定してください。
+    <br>
+    ∟ アニメーションファイル（FBX・GLB）を利用したときに、パフォーマンスが悪い場合にご活用ください。
+</small>
+<br>
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-07.png">
+<br>
+* Export Animation > Create Animator Controller
+<br>
+<small>
+    ∟ この機能はAssetBuildではありません。
+    <br>
+    ∟ アプリ > 編集画面 > アバターパネル > AnimationClipデータの出力 > トレースボタン（長押し）で出力したアバターのアニメーションファイル（JSON）をAnimatoinClipおよびAnimation.Controllerに変換します。
+    <br>
+    ∟ AnimatorのAnimationControllerのデフォルト状態に任意のアニメーションを設定し、Motion Timeに「MotionTime」パラメータを設定してください。
+    <br>
+    ∟ アニメーションファイル（FBX・GLB）を利用したときに、パフォーマンスが悪い場合にご活用ください。
+</small>
+
 3. ダイアログの入力をしてください。特に設定の必要がなければそのまま「Build」ボタンを押下してください。
 <br>
 
@@ -80,7 +116,7 @@ https://github.com/vrm-c/UniVRM/releases
 
 4. プレハブをAssetBuild化すると、ダイアログの#1のフォルダに出力されます。出力されたフォルダごとAirDropやGoogleDrive等でケヤキスタジオアプリをインストール済みのデバイスへ送信してください。「Keyaki Studio > assetsフォルダ」にフォルダごとコピーしてください。
 <br>
-参考 → https://keyaki-kaihatsu.fanbox.cc/posts/7841803
+参考 >>> https://keyaki-kaihatsu.fanbox.cc/posts/7841803
 <br>
 
 # 注意
