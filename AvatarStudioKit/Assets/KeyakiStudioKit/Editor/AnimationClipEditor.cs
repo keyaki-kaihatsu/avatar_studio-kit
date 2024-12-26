@@ -58,6 +58,10 @@ namespace AvatarStudio
                     var keyData = frameData.keys[i];
                     var key = new Keyframe(frameData.timestamp, keyData.value);
                     key.weightedMode = WeightedMode.None;
+
+                    //【注意】Hipsに関係するプロパティを無効化 
+                    key.value = keyData.property_name.Contains("Spine") ? 0 : keyData.value;
+
                     curveList[i].AddKey(key);
                 }
             }
@@ -74,7 +78,7 @@ namespace AvatarStudio
 
     public class AnimationClipSetUpEditor : MonoBehaviour
     {
-        [MenuItem("GameObject/KeyakiStudio/Animation Clip/Set up VRM")]
+        [MenuItem("GameObject/KeyakiStudio/Animation/Set up VRM")]
         static public void OnGameObject()
         {
             if (Selection.objects.Length > 0)
