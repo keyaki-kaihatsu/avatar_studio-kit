@@ -85,9 +85,11 @@ https://github.com/vrm-c/UniVRM/releases
 <small>
     ∟ アニメーション付きVRMをAssetBundle化します。アプリのanimationsフォルダにコピーしてください。
     <br>
+    ∟ アニメーションファイル（FBX・GLB）を利用したときに、パフォーマンスが悪い場合にご活用ください。
+    <br>
     ∟ AnimatorのAnimationControllerのデフォルト状態に任意のアニメーションを設定し、Motion Timeに「MotionTime」パラメータを設定してください。
     <br>
-    ∟ アニメーションファイル（FBX・GLB）を利用したときに、パフォーマンスが悪い場合にご活用ください。
+    ∟ VRMをヒエラルキーに展開し、右クリックしてメニューを開き、「KeyakiStudio > Animation > Set up VRM」を押下してください。こちらをプレハブ化してAssetBuild化してください。
 </small>
 <br>
 <br>
