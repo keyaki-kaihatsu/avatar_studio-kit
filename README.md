@@ -93,7 +93,6 @@ https://github.com/vrm-c/UniVRM/releases
 <br>
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-07.png">
 <br>
-<br>
 ● Export Animation > Create Animator Controller
 <br>
 <small>
@@ -103,7 +102,7 @@ https://github.com/vrm-c/UniVRM/releases
 </small>
 <br>
 <br>
-
+<br>
 3. ダイアログの入力をしてください。特に設定の必要がなければそのまま「Build」ボタンを押下してください。
 <br>
 
