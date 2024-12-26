@@ -64,8 +64,6 @@ https://github.com/vrm-c/UniVRM/releases
 
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-05.png">
 <br>
-<br>
-<br>
 
 ●　Asset Build (From Prefab)
 <br>
@@ -97,6 +95,7 @@ https://github.com/vrm-c/UniVRM/releases
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-07.png">
 <br>
 <br>
+<br>
 ●　Export Animation > Create Animator Controller
 <br>
 <small>
@@ -104,6 +103,7 @@ https://github.com/vrm-c/UniVRM/releases
     <br>
     ∟ アプリ > 編集画面 > アバターパネル > AnimationClipデータの出力 > トレースボタン（長押し）で出力したアバターのアニメーションファイル（JSON）をAnimatoinClipおよびAnimation.Controllerに変換します。
 </small>
+<br>
 
 3. ダイアログの入力をしてください。特に設定の必要がなければそのまま「Build」ボタンを押下してください。
 <br>
