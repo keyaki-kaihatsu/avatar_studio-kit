@@ -105,19 +105,19 @@ https://github.com/vrm-c/UniVRM/releases
 <br>
 3. ダイアログの入力をしてください。特に設定の必要がなければそのまま「Build」ボタンを押下してください。
 <br>
-
+<br>
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-06.png">
 <br>
-<br>
-
 * ビルド出力先を入力してください。
 * アセット名を入力してください。(任意)
 * アセットを展開したいデバイスOSを選択してください。(任意)
 * ZIP圧縮が必要な場合は選択してください。展開先ではZIP解答してください。(任意)
-
+<br>
+<br>
 4. プレハブをAssetBuild化すると、ダイアログの#1のフォルダに出力されます。出力されたフォルダごとAirDropやGoogleDrive等でケヤキスタジオアプリをインストール済みのデバイスへ送信してください。「Keyaki Studio > assetsフォルダ」にフォルダごとコピーしてください。
 <br>
 参考 >>> https://keyaki-kaihatsu.fanbox.cc/posts/7841803
+<br>
 <br>
 
 # 注意
