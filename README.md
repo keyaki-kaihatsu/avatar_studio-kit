@@ -62,7 +62,7 @@ https://github.com/vrm-c/UniVRM/releases
 
 2. Projectウィンドウから任意のプレハブを右クリックしてください。メニューから「KeyakiStudio > Asset Build (From Prefab)」を選択してください。
 
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-05.png">
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-08.png">
 <br>
 ・ Asset Build (From Prefab)
 <br>
