@@ -7,7 +7,7 @@ namespace AvatarStudio
 {
     public class AnimationClipEditor : MonoBehaviour
     {
-        [MenuItem("Assets/KeyakiStudio/Export Animation (From .txt)", false, 100)]
+        [MenuItem("Assets/KeyakiStudio/Convert Animation (From .txt)", false, 100)]
         static public void OnAssets()
         {
             if (Selection.objects.Length > 0)
