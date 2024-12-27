@@ -278,6 +278,9 @@ namespace AvatarStudio
             // Animator以外（VRMInstance）を無効化
             obj.GetComponents<Behaviour>().Where(b => !(b is Animator)).ToList().ForEach(b => b.enabled = false);
 
+            var animator = obj.GetComponent<Animator>();
+            animator.applyRootMotion = true;
+
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
             proptyModalWindow.Show("Animation Build", inputPath);
@@ -297,51 +300,6 @@ namespace AvatarStudio
     }
 
     #endregion
-
-    // #region -- Animation Build --
-
-    // public class AnimationBuilder : AssetBuilder
-    // {
-    //     static public void AnimationBuild(UnityEngine.Object obj)
-    //     {
-    //         // Animation Clip
-    //         var path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
-    //         var assets = AssetDatabase.LoadAllAssetsAtPath(path);
-
-    //         // var clip0 = assets.ToList().Find(a => a is AnimationClip);
-    //         // var clip = UnityEngine.Object.Instantiate(clip0);
-
-    //         var clip0 = assets.ToList().Find(a => a is AnimationClip);
-    //         var clip = new AnimationClip();
-    //         var bindings = AnimationUtility.GetCurveBindings(clip0 as AnimationClip);
-    //         foreach (var binding in bindings.Where(b => !(b.propertyName.StartsWith("material.") || b.propertyName.Contains("_MainTex"))))
-    //         {
-    //             var curve = AnimationUtility.GetEditorCurve(clip, binding);
-    //             clip.SetCurve(binding.path, binding.type, binding.propertyName, curve);
-    //         }
-
-    //         var animPath = Path.GetDirectoryName(path) + "/" + Path.GetFileNameWithoutExtension(path) + ".anim";
-    //         AssetDatabase.CreateAsset(clip, animPath);
-    //         AssetDatabase.SaveAssets();
-    //         AssetDatabase.Refresh();
-
-    //         // Property Window
-    //         var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
-    //         proptyModalWindow.Show("Animation Build", animPath);
-
-    //         proptyModalWindow._completion = (outputPath, assetId) =>
-    //         {
-    //             // Save
-    //             Directory.CreateDirectory(outputPath);
-
-    //             AssetBuild(animPath, outputPath, assetId, BuildAssetBundleOptions.None);
-
-    //             System.Diagnostics.Process.Start(outputPath);
-    //         };
-    //     }
-    // }
-
-    // #endregion
 
     #region -- BuildPropertyEditor --
 

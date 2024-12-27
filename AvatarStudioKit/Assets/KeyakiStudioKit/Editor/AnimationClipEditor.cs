@@ -1,7 +1,5 @@
 using System.IO;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEditor;
 using UnityEditor.Animations;
 
@@ -9,7 +7,7 @@ namespace AvatarStudio
 {
     public class AnimationClipEditor : MonoBehaviour
     {
-        [MenuItem("Assets/KeyakiStudio/Export Animation/Create Animator Controller", false, 100)]
+        [MenuItem("Assets/KeyakiStudio/Export Animation (From .txt)", false, 100)]
         static public void OnAssets()
         {
             if (Selection.objects.Length > 0)
@@ -56,13 +54,7 @@ namespace AvatarStudio
                 for (var i = 0; i < LENGTH; i++)
                 {
                     var keyData = frameData.keys[i];
-                    var key = new Keyframe(frameData.timestamp, keyData.value);
-                    key.weightedMode = WeightedMode.None;
-
-                    //【注意】Hipsに関係するプロパティを無効化 
-                    key.value = keyData.property_name.Contains("Spine") ? 0 : keyData.value;
-
-                    curveList[i].AddKey(key);
+                    curveList[i].AddKey(frameData.timestamp, keyData.value);
                 }
             }
 
@@ -73,46 +65,6 @@ namespace AvatarStudio
             }
 
             return clip;
-        }
-    }
-
-    public class AnimationClipSetUpEditor : MonoBehaviour
-    {
-        [MenuItem("GameObject/KeyakiStudio/Animation/Set up VRM")]
-        static public void OnGameObject()
-        {
-            if (Selection.objects.Length > 0)
-            {
-                if (Selection.objects[0] is GameObject obj)
-                {
-                    // Animator以外（VRMInstance）を無効化
-                    obj.GetComponents<Behaviour>().Where(b => !(b is Animator)).ToList().ForEach(b => b.enabled = false);
-
-                    // Parent Constraint
-                    var animator = obj.GetComponent<Animator>();
-                    var hips = animator.GetBoneTransform(HumanBodyBones.Hips);
-
-                    var constraint = hips.GetComponent<ParentConstraint>();
-                    if (constraint == null)
-                    {
-                        constraint = hips.gameObject.AddComponent<ParentConstraint>();
-                        constraint.constraintActive = true;
-                        constraint.locked = true;
-
-                        var constObj = new GameObject();
-                        constObj.name = "ConstraintSource";
-                        constObj.transform.SetParent(animator.transform, false);
-
-                        var constSource = new ConstraintSource();
-                        constSource.sourceTransform = constObj.transform;
-                        constraint.AddSource(constSource);
-                    }
-
-                    return;
-                }
-            }
-
-            Debug.LogError("[KeyakiStudioKit] Not Selected.");
         }
     }
 }
