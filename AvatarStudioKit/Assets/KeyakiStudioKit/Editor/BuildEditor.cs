@@ -95,35 +95,7 @@ namespace AvatarStudio
                 Directory.CreateDirectory(path);
         }
     }
-
-    // public class AnimationBuildEditor
-    // {
-    //     [MenuItem("Assets/KeyakiStudio/Animation Asset Build (From Prefab)", false, 2)]
-    //     static public void OnAssets()
-    //     {
-    //         SetUp();
-
-    //         if (Selection.objects.Length > 0)
-    //         {
-    //             if (Selection.objects[0] is GameObject obj)
-    //             {
-    //                 // Animation Clip
-    //                 AnimationBuilder.AnimationBuild(obj);
-    //                 return;
-    //             }
-    //         }
-
-    //         Debug.LogError("[KeyakiStudioKit] Not Selected.");
-    //     }
-
-    //     static void SetUp()
-    //     {
-    //         var path = Config.ROOT_PATH;
-    //         if (!Directory.Exists(path))
-    //             Directory.CreateDirectory(path);
-    //     }
-    // }
-
+    
     #region -- Asset Build --
 
     public class AssetBuilder
