@@ -88,19 +88,17 @@ https://github.com/vrm-c/UniVRM/releases
     ∟ アニメーションファイル（FBX・GLB）を利用したときに、パフォーマンスが悪い場合にご活用ください。
     <br>
     ∟ AnimatorのAnimationControllerのデフォルト状態に任意のアニメーションを設定し、Motion Timeに「MotionTime」パラメータを設定してください。
-    <br>
-    ∟ VRMをヒエラルキーに展開し、右クリックしてメニューを開き、「KeyakiStudio > Animation > Set up VRM」を押下してください。こちらをプレハブ化してAssetBuild化してください。
 </small>
 <br>
 <br>
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-07.png">
 <br>
-・ Export Animation > Create Animator Controller
+・ Convert Animation (From .txt)
 <br>
 <small>
-    ∟ この機能はAssetBuildではありません。
+    ∟ この機能はAssetBuildではありません。アプリで生成したトレースファイル（.txt）をアニメーションに変換する機能です。
     <br>
-    ∟ アプリ > 編集画面 > アバターパネル > AnimationClipデータの出力 > トレースボタン（長押し）で出力したアバターのアニメーションファイル（JSON）をAnimatoinClipおよびAnimation.Controllerに変換します。
+    ∟ アプリ > 編集画面 > アバターパネル > AnimationClipデータの出力 > トレースボタン（長押し）で生成したトレースファイルをAnimatoinClipおよびAnimation.Controllerに出力します。
 </small>
 <br>
 <br>
