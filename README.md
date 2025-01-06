@@ -67,25 +67,25 @@ https://github.com/vrm-c/UniVRM/releases
 ・ Asset Build (From Prefab)
 <br>
 <small>
-    ∟ プレハブをAssetBundle化します。アプリのassetsフォルダにコピーしてください。
+    ∟ プレハブをAssetBundle化します。出力されたフォルダ全体をアプリのassetsフォルダにコピーしてください。
 </small>
 <br>
 <br>
 ・ Avatar Asset Build (From VRM)
 <br>
 <small>
-    ∟ VRMをAssetBundle化します。アプリのvrm_filesフォルダにコピーしてください。
+    ∟ VRMをAssetBundle化します。出力されたフォルダ全体をアプリのvrm_filesフォルダにコピーしてください。
     <br>
-    ∟ VRoidHub連携やVRMファイルを利用したときに、パフォーマンスが悪い場合にご活用ください。
+    ∟ VRoidHubやVRMファイルの読み込みのパフォーマンスが悪いと感じた場合にご活用ください。
 </small>
 <br>
 <br>
 ・ Animation Asset Build (From VRM Prefab + Animation)
 <br>
 <small>
-    ∟ アニメーション付きVRMをAssetBundle化します。アプリのanimationsフォルダにコピーしてください。
+    ∟ アニメーション付きVRMをAssetBundle化します。出力されたフォルダ全体をアプリのanimationsフォルダにコピーしてください。
     <br>
-    ∟ アニメーションファイル（FBX・GLB）を利用したときに、パフォーマンスが悪い場合にご活用ください。
+    ∟ アニメーションファイル（FBX・GLB）の読み込みのパフォーマンスが悪いと感じた場合にご活用ください。
     <br>
     ∟ AnimatorのAnimationControllerのデフォルト状態に任意のアニメーションを設定し、Motion Timeに「MotionTime」パラメータを設定してください。
 </small>
