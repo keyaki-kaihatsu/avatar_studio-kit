@@ -131,6 +131,17 @@ Reference → https://keyaki-kaihatsu.fanbox.cc/posts/7841803
 * Scripts and shaders cannot be converted into AssetBundles.
 * Asset names must be unique.
 
+# KEYAKI STUDIO - My Assets
+
+"KEYAKI STUDI MyAssets" is a useful website for importing 3D content built with AssetBuild on a PC into an iPhone/Android app.
+<br>
+<br>
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-09.png">
+<br>
+How to access your "KEYAKI STUDIO MyAssets" site: 
+<br>
+On the TOP screen, go to "MENU > Download Asset" to open the online asset list, then press the "My Assets" button.
+
 # Authors
 
 * Yuta Ueda / Keyaki Kaihatsu

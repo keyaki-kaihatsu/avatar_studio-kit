@@ -117,7 +117,7 @@ https://github.com/vrm-c/UniVRM/releases
 ・ ZIP圧縮が必要な場合は選択してください。展開先ではZIP解答してください。(任意)
 <br>
 <br>
-4. プレハブをAssetBuild化すると、ダイアログの#1のフォルダに出力されます。出力されたフォルダごとAirDropやGoogleDrive等でケヤキスタジオアプリをインストール済みのデバイスへ送信してください。
+4. プレハブをAssetBuildすると、ダイアログの#1のフォルダに出力されます。出力されたフォルダごとAirDropやGoogleDrive等でケヤキスタジオアプリをインストール済みのデバイスへ送信してください。
 <br>
 「Keyaki Studio > assetsフォルダ」にフォルダごとコピーしてください。
 <br>
@@ -129,6 +129,17 @@ https://github.com/vrm-c/UniVRM/releases
 
 * スクリプトやシェーダーをAssetBuild化することはできません。
 * 同名のアセット名を使うことはできません。
+
+# KEYAKI STUDIO - My Assets
+
+KEYAKI STUDI MyAssetsはPCでAssetBuildした3DコンテンツをiPhone/Androidのアプリにインポートするときに便利なWebサイトです。このサイトを経由して3DコンテンツをPCからアプリにトランスポートすることができます。
+<br>
+<br>
+<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-09.png">
+<br>
+※ サイトにアクセスする方法
+<br>
+ TOP画面で「メニュー > コンテンツのダウンロード」でオンラインアセット一覧を開き、マイアセットボタンを押下してください。
 
 # 運営
 
