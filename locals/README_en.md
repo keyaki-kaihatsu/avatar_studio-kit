@@ -140,7 +140,7 @@ Reference → https://keyaki-kaihatsu.fanbox.cc/posts/7841803
 <br>
 How to access your "KEYAKI STUDIO MyAssets" site: 
 <br>
-On the TOP screen, go to "MENU > Download Asset" to open the online asset list, then press the "My Assets" button.
+On the app's TOP screen, open the "My Asset" list and press the "My Asset" button.
 
 # Authors
 
