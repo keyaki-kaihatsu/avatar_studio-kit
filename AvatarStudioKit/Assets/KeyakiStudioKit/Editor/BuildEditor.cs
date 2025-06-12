@@ -1,15 +1,27 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEditor;
 
 namespace AvatarStudio
 {
     public class BuildEditor
     {
+        static public string ROOT_PATH
+        {
+            get
+            {
+                var path = Application.dataPath;
+                var dir = new DirectoryInfo(path);
+                return dir.Parent.FullName + "/AssetBundles";
+            }
+        }
+
         [MenuItem("Assets/KeyakiStudio/Asset Build (From Prefab)", false, 0)]
         static public void OnAssets()
         {
@@ -34,7 +46,7 @@ namespace AvatarStudio
 
         static void SetUp()
         {
-            var path = Config.ROOT_PATH;
+            var path = ROOT_PATH;
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
@@ -62,7 +74,7 @@ namespace AvatarStudio
 
         static void SetUp()
         {
-            var path = Config.ROOT_PATH;
+            var path = BuildEditor.ROOT_PATH;
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
@@ -90,12 +102,12 @@ namespace AvatarStudio
 
         static void SetUp()
         {
-            var path = Config.ROOT_PATH;
+            var path = BuildEditor.ROOT_PATH;
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
     }
-    
+
     #region -- Asset Build --
 
     public class AssetBuilder
@@ -126,7 +138,8 @@ namespace AvatarStudio
             };
         }
 
-        protected static void AssetBuild(string inputPath, string outputPath, string assetId, BuildAssetBundleOptions option =  BuildAssetBundleOptions.ChunkBasedCompression)
+        protected static void AssetBuild(string inputPath, string outputPath, string assetId, BuildAssetBundleOptions option = BuildAssetBundleOptions.ChunkBasedCompression)
+        // protected static void AssetBuild(string inputPath, string outputPath, string assetId, BuildAssetBundleOptions option = BuildAssetBundleOptions.None)
         {
             var builds = new List<AssetBundleBuild>();
 
@@ -139,7 +152,7 @@ namespace AvatarStudio
             build.assetNames = new string[1] { inputPath };
             builds.Add(build);
 
-            var pref = JsonUtility.FromJson<Preference>(PlayerPrefs.GetString("prefrence"));
+            var pref = JsonUtility.FromJson<PreferenceData>(PlayerPrefs.GetString("prefrence"));
 
             if (pref.enabled_build_ios)
             {
@@ -228,6 +241,7 @@ namespace AvatarStudio
 
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
+            proptyModalWindow._assetType = "avatar";
             proptyModalWindow.Show("VRM Build", inputPath);
 
             proptyModalWindow._completion = (outputPath, assetId) =>
@@ -255,6 +269,7 @@ namespace AvatarStudio
 
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
+            proptyModalWindow._assetType = "animation";
             proptyModalWindow.Show("Animation Build", inputPath);
 
             proptyModalWindow._completion = (outputPath, assetId) =>
@@ -283,7 +298,9 @@ namespace AvatarStudio
 
         public string _assetId = "";
 
-        public Preference _preference;
+        public PreferenceData _preference;
+
+        public string _assetType = "content";
 
         public void Show(string title, string inputPath)
         {
@@ -296,75 +313,230 @@ namespace AvatarStudio
 
         void Awake()
         {
-            minSize = new Vector2(320, 520);
+            minSize = new Vector2(380, 800);
             position = new Rect(Vector2.zero, minSize);
 
-            _outputPath = Config.ROOT_PATH;
+            _outputPath = BuildEditor.ROOT_PATH;
 
             if (PlayerPrefs.HasKey("prefrence"))
             {
-                _preference = JsonUtility.FromJson<Preference>(PlayerPrefs.GetString("prefrence"));
+                _preference = JsonUtility.FromJson<PreferenceData>(PlayerPrefs.GetString("prefrence"));
             }
             else
             {
-                _preference = new Preference();
+                _preference = new PreferenceData();
                 _preference.enabled_build_ios = true;
                 _preference.enabled_build_android = true;
                 _preference.enabled_build_standalone_windows64 = true;
                 _preference.enabled_build_standalone_osx = true;
                 _preference.enabled_compression = false;
+                _preference.access_code = "";
             }
         }
 
         void OnGUI()
         {
-            var titleTex = AssetDatabase.LoadAssetAtPath<Texture>("Assets/KeyakiStudioKit/Editor/title.png");
-            EditorGUILayout.LabelField(new GUIContent(titleTex), GUILayout.Height(240 * 1600f / 2400f), GUILayout.Width(320));
+            var titleStyle = new GUIStyle(EditorStyles.wordWrappedLabel);
+            titleStyle.fontSize = 16;
+            titleStyle.fontStyle = FontStyle.Bold;
 
-            GUILayout.Space(20);
+            var linkStyle = new GUIStyle(EditorStyles.label);
+            linkStyle.normal.textColor = Color.white;
+            linkStyle.hover.textColor = Color.gray;
+            linkStyle.fontStyle = FontStyle.Italic;
 
-            EditorGUILayout.LabelField("#1 Please enter the output directory path.", EditorStyles.wordWrappedLabel);
+            GUILayout.Space(15);
 
-            _outputPath = EditorGUILayout.TextField(_outputPath);
+            var titleTex = Resources.Load<Texture>("ksk_title");
+            EditorGUILayout.LabelField(new GUIContent(titleTex), GUILayout.Height(160f * 0.7f), GUILayout.Width(320f * 0.7f));
 
-            GUILayout.Space(20);
-
-            EditorGUILayout.LabelField("#2 Please enter asset name.", EditorStyles.wordWrappedLabel);
-
-            _assetId = EditorGUILayout.TextField(_assetId);
-
-            GUILayout.Space(20);
-
-            EditorGUILayout.LabelField("#3 OS", EditorStyles.wordWrappedLabel);
-
-            _preference.enabled_build_ios = EditorGUILayout.Toggle("iOS", _preference.enabled_build_ios);
-
-            _preference.enabled_build_android = EditorGUILayout.Toggle("Android", _preference.enabled_build_android);
-
-            _preference.enabled_build_standalone_windows64 = EditorGUILayout.Toggle("Windows", _preference.enabled_build_standalone_windows64);
-
-            _preference.enabled_build_standalone_osx = EditorGUILayout.Toggle("MacOS", _preference.enabled_build_standalone_osx);
-
-            GUILayout.Space(20);
-
-            EditorGUILayout.LabelField("#4 Compression (Zip)", EditorStyles.wordWrappedLabel);
-
-            _preference.enabled_compression = EditorGUILayout.Toggle("Compress", _preference.enabled_compression);
-
-            GUILayout.Space(20);
+            GUILayout.Space(15);
 
             EditorGUILayout.BeginHorizontal();
             {
-                EditorGUILayout.Space();
-                if (GUILayout.Button("Build", GUILayout.MaxWidth(200f)))
-                {
-                    Close();
-                    _completion?.Invoke(_outputPath + "/" + _assetId, _assetId);
-                }
-                EditorGUILayout.Space();
+                GUILayout.Space(10);
 
-                PlayerPrefs.SetString("prefrence", JsonUtility.ToJson(_preference));
-                PlayerPrefs.Save();
+                EditorGUILayout.BeginVertical();
+                {
+                    EditorGUILayout.LabelField(Locale.Get("build"), titleStyle);
+
+                    GUILayout.Space(15);
+
+                    EditorGUILayout.LabelField("#1 " + Locale.Get("please_enter_output_path"), EditorStyles.wordWrappedLabel);
+
+                    _outputPath = EditorGUILayout.TextField(_outputPath);
+
+                    GUILayout.Space(15);
+
+                    EditorGUILayout.LabelField("#2 " + Locale.Get("please_enter_name"), EditorStyles.wordWrappedLabel);
+
+                    _assetId = EditorGUILayout.TextField(_assetId);
+
+                    GUILayout.Space(15);
+
+                    EditorGUILayout.LabelField("#3 " + Locale.Get("build_target"), EditorStyles.wordWrappedLabel);
+
+                    _preference.enabled_build_ios = EditorGUILayout.Toggle("iOS", _preference.enabled_build_ios);
+
+                    _preference.enabled_build_android = EditorGUILayout.Toggle("Android", _preference.enabled_build_android);
+
+                    _preference.enabled_build_standalone_windows64 = EditorGUILayout.Toggle("Windows", _preference.enabled_build_standalone_windows64);
+
+                    _preference.enabled_build_standalone_osx = EditorGUILayout.Toggle("MacOS", _preference.enabled_build_standalone_osx);
+
+                    GUILayout.Space(15);
+
+                    EditorGUILayout.LabelField("#4 " + Locale.Get("compression_zip"), EditorStyles.wordWrappedLabel);
+
+                    _preference.enabled_compression = EditorGUILayout.Toggle(Locale.Get("compression"), _preference.enabled_compression);
+
+                    GUILayout.Space(15);
+
+                    EditorGUILayout.BeginHorizontal();
+                    {
+                        EditorGUILayout.Space();
+
+                        if (GUILayout.Button(Locale.Get("build"), GUILayout.MaxWidth(200f)))
+                        {
+                            _completion?.Invoke(_outputPath + "/" + _assetId, _assetId);
+                        }
+
+                        EditorGUILayout.Space();
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+                    GUILayout.Space(25);
+
+                    EditorGUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Space(10);
+
+                        var rect = GUILayoutUtility.GetRect(1, 1, GUILayout.ExpandWidth(true), GUILayout.Height(1));
+                        EditorGUI.DrawRect(rect, Color.gray);
+
+                        GUILayout.Space(10);
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+                    GUILayout.Space(25);
+
+                    EditorGUILayout.LabelField(Locale.Get("upload"), titleStyle);
+
+                    GUILayout.Space(15);
+
+                    var linkRect = GUILayoutUtility.GetRect(new GUIContent(Locale.Get("get_access_code")), linkStyle);
+                    EditorGUIUtility.AddCursorRect(linkRect, MouseCursor.Link);
+                    if (GUI.Button(linkRect, Locale.Get("get_access_code"), linkStyle))
+                    {
+                        Application.OpenURL("https://avatar-studio-react.onrender.com/temporary_sessions/new?redirect_to=new_temporary_sessions");
+                    }
+
+                    GUILayout.Space(15);
+
+                    EditorGUILayout.LabelField("#1 " + Locale.Get("access_code"), EditorStyles.wordWrappedLabel);
+
+                    _preference.access_code = EditorGUILayout.TextField(_preference.access_code);
+
+                    GUILayout.Space(10);
+
+                    var zipPath = _outputPath + "/" + _assetId + ".zip";
+                    var zipExists = File.Exists(zipPath);
+                    var codeExists = !string.IsNullOrEmpty(_preference.access_code);
+
+                    EditorGUILayout.BeginHorizontal();
+                    {
+                        EditorGUILayout.Space();
+
+                        GUI.enabled = zipExists && codeExists;
+
+                        if (GUILayout.Button(Locale.Get("upload"), GUILayout.MaxWidth(200f)))
+                        {
+                            var error = Upload(zipPath, code: _preference.access_code, assetType: _assetType);
+                            if (string.IsNullOrEmpty(error))
+                            {
+                                if (EditorUtility.DisplayDialog(Locale.Get("success"), Locale.Get("success_message"), "OK"))
+                                {
+                                    Application.OpenURL("https://avatar-studio-react.onrender.com/assets");
+                                }
+                            }
+                            else
+                            {
+                                EditorUtility.DisplayDialog(Locale.Get("failed"), error, "OK");
+                            }
+                        }
+
+                        GUI.enabled = true;
+
+                        EditorGUILayout.Space();
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+                    if (!zipExists || !codeExists)
+                    {
+                        GUILayout.Space(5);
+
+                        if (!zipExists)
+                        {
+                            GUILayout.Space(10);
+
+                            EditorGUILayout.HelpBox(Locale.Get("please_build_and_compress"), MessageType.Warning);
+                        }
+
+                        if (!codeExists)
+                        {
+                            GUILayout.Space(10);
+
+                            EditorGUILayout.HelpBox(Locale.Get("please_enter_access_code"), MessageType.Warning);
+                        }
+                    }
+                    else
+                    {
+                        GUILayout.Space(15);
+
+                        EditorGUILayout.HelpBox(Locale.Get("ready_to_upload"), MessageType.Info);
+                    }
+                }
+                EditorGUILayout.EndVertical();
+
+                GUILayout.Space(10);
+            }
+            EditorGUILayout.EndHorizontal();
+
+            PlayerPrefs.SetString("prefrence", JsonUtility.ToJson(_preference));
+            PlayerPrefs.Save();
+        }
+
+        string Upload(string zipPath, string code, string assetType)
+        {
+            var zipBytes = File.ReadAllBytes(zipPath);
+
+            var form = new WWWForm();
+            form.AddField("access_code", code);
+            form.AddBinaryData("file", zipBytes, Path.GetFileName(zipPath), "application/zip");
+            form.AddField("asset_type", assetType);
+
+            using (var www = UnityWebRequest.Post("https://avatar-studio-react.onrender.com/api/v1/asset_files", form))
+            {
+                www.SendWebRequest();
+                while (!www.isDone)
+                {
+                    System.Threading.Thread.Sleep(10);
+                }
+
+#if UNITY_2020_1_OR_NEWER
+                if (www.result != UnityWebRequest.Result.Success)
+#else
+                if (www.isNetworkError || www.isHttpError)
+#endif
+                {
+                    return www.error.ToString();
+                }
+                else
+                {
+                    var json = www.downloadHandler.text;
+                    var data = JsonUtility.FromJson<APIData<string>>(json);
+                    return data.status == 0 ? null : data.error;
+                }
             }
         }
     }
@@ -374,7 +546,7 @@ namespace AvatarStudio
     #region -- Inner Class --
 
     [Serializable]
-    class Preference
+    class PreferenceData
     {
         public bool enabled_build_ios;
 
@@ -385,6 +557,8 @@ namespace AvatarStudio
         public bool enabled_build_standalone_osx;
 
         public bool enabled_compression;
+
+        public string access_code;
     }
 
     class ZipUtils
@@ -427,6 +601,18 @@ namespace AvatarStudio
             }
         }
     }
+
+    [Serializable]
+    public class APIData<T>
+    {
+        public int status;
+
+        public string type;
+
+        public T data;
+        
+        public string error;
+	}
 
     #endregion
 }

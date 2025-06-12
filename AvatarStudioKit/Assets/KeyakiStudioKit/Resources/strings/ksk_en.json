@@ -1,0 +1,64 @@
+{
+  "strings": [
+    {
+      "key": "please_enter_output_path",
+      "value": "Please enter the output directory path."
+    },
+    {
+      "key": "please_enter_name",
+      "value": "Please enter asset name."
+    },
+    {
+      "key": "build_target",
+      "value": "Build target"
+    },
+    {
+      "key": "compression_zip",
+      "value": "Compression (Zip)"
+    },
+    {
+      "key": "compression",
+      "value": "Compress"
+    },
+    {
+      "key": "build",
+      "value": "Build"
+    },
+    {
+      "key": "my_assets",
+      "value": "My Assets"
+    },
+    {
+      "key": "get_access_code",
+      "value": "Get access code on My Assets"
+    },
+    {
+      "key": "access_code",
+      "value": "Access Code"
+    },
+    {
+      "key": "upload",
+      "value": "Upload"
+    },
+    {
+      "key": "please_build_and_compress",
+      "value": "Please build and compress as Zip."
+    },
+    {
+      "key": "please_enter_access_code",
+      "value": "Please enter access code."
+    },
+    {
+      "key": "ready_to_upload",
+      "value": "Ready to upload."
+    },
+    {
+      "key": "success",
+      "value": "Success"
+    },
+    {
+      "key": "success_message",
+      "value": "Uploaded to My Assets."
+    }
+  ]
+}

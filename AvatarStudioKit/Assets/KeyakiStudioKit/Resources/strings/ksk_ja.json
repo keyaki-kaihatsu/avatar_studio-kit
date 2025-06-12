@@ -1,0 +1,64 @@
+{
+  "strings": [
+    {
+      "key": "please_enter_output_path",
+      "value": "出力先のパスを入力してください。"
+    },
+    {
+      "key": "please_enter_name",
+      "value": "アセット名を入力してください。"
+    },
+    {
+      "key": "build_target",
+      "value": "ビルド対象"
+    },
+    {
+      "key": "compression_zip",
+      "value": "圧縮 (Zip)"
+    },
+    {
+      "key": "compression",
+      "value": "圧縮"
+    },
+    {
+      "key": "build",
+      "value": "ビルド"
+    },
+    {
+      "key": "my_assets",
+      "value": "マイアセット"
+    },
+    {
+      "key": "get_access_code",
+      "value": "マイアセットでアクセスコードを取得しましょう"
+    },
+    {
+      "key": "access_code",
+      "value": "アクセスコード"
+    },
+    {
+      "key": "upload",
+      "value": "アップロード"
+    },
+    {
+      "key": "please_build_and_compress",
+      "value": "ビルド・圧縮してください。"
+    },
+    {
+      "key": "please_enter_access_code",
+      "value": "アクセスコードを入力してください。"
+    },
+    {
+      "key": "ready_to_upload",
+      "value": "アップロードの準備ができました。"
+    },
+    {
+      "key": "success",
+      "value": "成功"
+    },
+    {
+      "key": "success_message",
+      "value": "マイアセットにアップロードしました。"
+    }
+  ]
+}
