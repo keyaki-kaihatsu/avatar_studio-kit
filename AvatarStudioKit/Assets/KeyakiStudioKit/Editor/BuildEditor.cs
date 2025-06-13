@@ -21,7 +21,7 @@ namespace AvatarStudio
             }
         }
 
-        [MenuItem("Assets/KeyakiStudio/Asset Build (From Prefab)", false, 0)]
+        [MenuItem("Assets/Keyaki Studio/Asset Build (From Prefab)", false, 0)]
         static public void OnAssets()
         {
             SetUp();
@@ -53,7 +53,7 @@ namespace AvatarStudio
 
     public class AvatarBuildEditor
     {
-        [MenuItem("Assets/KeyakiStudio/Avatar Asset Build (From VRM)", false, 1)]
+        [MenuItem("Assets/Keyaki Studio/Avatar Asset Build (From VRM)", false, 1)]
         static public void OnAssets()
         {
             SetUp();
@@ -81,7 +81,7 @@ namespace AvatarStudio
 
     public class AnimationBuildEditor
     {
-        [MenuItem("Assets/KeyakiStudio/Animation Asset Build (From VRM Prefab + Animation)", false, 2)]
+        [MenuItem("Assets/Keyaki Studio/Animation Asset Build (From VRM Prefab + Animation)", false, 2)]
         static public void OnAssets()
         {
             SetUp();

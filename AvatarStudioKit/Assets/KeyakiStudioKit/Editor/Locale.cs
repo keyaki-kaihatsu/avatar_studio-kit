@@ -19,10 +19,10 @@ namespace AvatarStudio
 
         static public string Get(string key)
         {
-            var lang = UnityEditor.EditorPrefs.GetString("EditorLanguage", "en");
+            var lang = Application.systemLanguage;
             switch (lang)
             {
-                case "ja":
+                case SystemLanguage.Japanese:
                     return JA_STRING_LIST.ContainsKey(key) ? JA_STRING_LIST[key] : key;
                 default:
                     return EN_STRING_LIST.ContainsKey(key) ? EN_STRING_LIST[key] : key;
