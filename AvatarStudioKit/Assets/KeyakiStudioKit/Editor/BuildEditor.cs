@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEditor;
@@ -241,7 +242,7 @@ namespace AvatarStudio
             // Property Window
             var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
             proptyModalWindow._assetType = "avatar";
-            proptyModalWindow.Show("VRM Build", inputPath);
+            proptyModalWindow.Show("Avatar Build", inputPath);
 
             proptyModalWindow._completion = (outputPath, assetId) =>
             {
@@ -299,7 +300,7 @@ namespace AvatarStudio
 
         public PreferenceData _preference;
 
-        public string _assetType = "content";
+        public string _assetType = "object";
 
         public void Show(string title, string inputPath)
         {
@@ -456,6 +457,7 @@ namespace AvatarStudio
                                 if (EditorUtility.DisplayDialog(Locale.Get("success"), Locale.Get("success_message"), "OK"))
                                 {
                                     Application.OpenURL("https://avatar-studio-react.onrender.com/assets");
+                                    // Application.OpenURL("http://localhost:3000/assets");
                                 }
                             }
                             else
@@ -511,10 +513,12 @@ namespace AvatarStudio
 
             var form = new WWWForm();
             form.AddField("access_code", code);
-            form.AddBinaryData("file", zipBytes, Path.GetFileName(zipPath), "application/zip");
+            form.AddField("file_name", Path.GetFileName(zipPath), Encoding.UTF8);
+            form.AddBinaryData("file", zipBytes, "upload.zip", "application/zip");
             form.AddField("asset_type", assetType);
 
             using (var www = UnityWebRequest.Post("https://avatar-studio-react.onrender.com/api/v1/asset_files", form))
+            // using (var www = UnityWebRequest.Post("http://localhost:3000/api/v1/asset_files", form))
             {
                 www.SendWebRequest();
                 while (!www.isDone)
