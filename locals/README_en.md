@@ -108,7 +108,7 @@ https://github.com/vrm-c/UniVRM/releases
 <br>
 <br>
 <div style="display: flex; justify-content: center;">
-  <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-06.png" style="display: block; width: 40%;">
+  <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-12.png" style="display: block; width: 40%;">
 </div>
 <br>
 ・ Enter the build output destination.
