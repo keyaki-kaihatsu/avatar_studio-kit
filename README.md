@@ -5,9 +5,9 @@
 
 [English version here (英語版はこちら)](locals/README_en.md)
 
-このプロジェクトは**ケヤキスタジオ**向けに3Dモデルや3Dシーンをエクスポートするためのプロジェクトです。
+このプロジェクトは**ケヤキスタジオ**向けに 3D モデルや 3D シーンをエクスポートするためのプロジェクトです。
 
-*こちらのunitypackageをご利用ください。*
+_こちらの unitypackage をご利用ください。_
 <br>
 [Unity Package]
 https://github.com/keyaki-kaihatsu/avatar_studio-kit/releases
@@ -16,51 +16,52 @@ https://github.com/keyaki-kaihatsu/avatar_studio-kit/releases
 
 # ケヤキスタジオ
 
-ケヤキスタジオはアバターを使って3Dアニメ制作ができるアプリです。全ての登場人物の演技・3D舞台の編集・撮影など、アニメ制作に必要な工程をアプリで作業できます。
+ケヤキスタジオはアバターを使って 3D アニメ制作ができるアプリです。全ての登場人物の演技・3D 舞台の編集・撮影など、アニメ制作に必要な工程をアプリで作業できます。
 <br>
 
-*App Store*
+_App Store_
 <img src="https://skillicons.dev/icons?i=apple">
 <br>
 https://apps.apple.com/app/keyaki-studio/id6447358128
 
-*Google Play*
+_Google Play_
 <img src="https://skillicons.dev/icons?i=androidstudio">
 <br>
 https://play.google.com/store/apps/details?id=com.keyakikaihatsu.keyakistudio
 
-*Windows & Mac*
+_Windows & Mac_
 <img src="https://skillicons.dev/icons?i=windows,apple">
 <br>
 [英語版]
 https://keyaki-kaihatsu.booth.pm/items/5428965
 <br>
 [日本語版]
-https://keyaki-kaihatsu.booth.pm/items/5381402　
+https://keyaki-kaihatsu.booth.pm/items/5381402
 
 # 概要
 
-このプロジェクトを使うと、UnityのAssetBundle機能を使ってUnityのプレハブをケヤキスタジオにインポートすることができます。
+このプロジェクトを使うと、Unity の AssetBundle 機能を使って Unity のプレハブをケヤキスタジオにインポートすることができます。
 
 # 環境
 
 **Unity**
+
 ```bash
- Version   >>>  Unity 6 (6000.0.25f1)
+ Version   >>>  Unity 2022.3.61f1
  Platform  >>>  iOS, Android, Windows, macOS
 ```
 
 **VRM**
 
-VRMファイル（アバター用のファイル）をAssetBundle化すると、VRMファイルを利用するよりもパフォーマンスが上がります。VRMファイルをAssetBundle化するには**VRM1.0**のunitypackageをインポートしてください。
+VRM ファイル（アバター用のファイル）を AssetBundle 化すると、VRM ファイルを利用するよりもパフォーマンスが上がります。VRM ファイルを AssetBundle 化するには**VRM1.0**の unitypackage をインポートしてください。
 <br>
 https://github.com/vrm-c/UniVRM/releases
 
 # 利用方法
 
-1. Unityプロジェクトを新規作成し、unitypackageをインポートしてください。
+1. Unity プロジェクトを新規作成し、unitypackage をインポートしてください。
 
-2. Projectウィンドウから任意のプレハブを右クリックしてください。メニューから「KeyakiStudio > Asset Build (From Prefab)」を選択してください。
+2. Project ウィンドウから任意のプレハブを右クリックしてください。メニューから「KeyakiStudio > Asset Build (From Prefab)」を選択してください。
 
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-08.png">
 <br>
@@ -106,7 +107,9 @@ https://github.com/vrm-c/UniVRM/releases
 3. ダイアログの入力をしてください。特に設定の必要がなければそのまま「Build」ボタンを押下してください。
 <br>
 <br>
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-06.png">
+<div style="display: flex; justify-content: center;">
+  <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-06.png" style="display: block; width: 40%;">
+</div>
 <br>
 ・ ビルド出力先を入力してください。
 <br>
@@ -116,35 +119,64 @@ https://github.com/vrm-c/UniVRM/releases
 <br>
 ・ ZIP圧縮が必要な場合は選択してください。展開先ではZIP解答してください。(任意)
 <br>
+
+## アップロード
+
+### フォルダにコピー
+
+プレハブを AssetBuild すると、ダイアログの#1 のフォルダに出力されます。
 <br>
-4. プレハブをAssetBuildすると、ダイアログの#1のフォルダに出力されます。出力されたフォルダごとAirDropやGoogleDrive等でケヤキスタジオアプリをインストール済みのデバイスへ送信してください。
+出力されたフォルダを AirDrop や GoogleDrive 等でケヤキスタジオアプリをインストール済みのデバイスへ送信してください。
 <br>
-「Keyaki Studio > assetsフォルダ」にフォルダごとコピーしてください。
+「Keyaki Studio > assets フォルダ」にフォルダごとコピーしてください。
 <br>
-参考 → https://keyaki-kaihatsu.fanbox.cc/posts/7841803
+参考 → <a href="https://keyaki-kaihatsu.fanbox.cc/posts/7841803" target="_blank">https://keyaki-kaihatsu.fanbox.cc/posts/7841803</a>
+<br>
+<br>
+
+### マイアセットを利用
+
+マイアセットとはクラウド経由でアプリにアセットをダウンロードできる WEB サイトです。マイアセットサイトにログインしてアクセスコード（\*1）を取得して入力してください。
+<br>
+
+<div style="display: flex; justify-content: center;">
+  <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-10.png" style="display: block; width: 40%;">
+</div>
+
+<br>
+（\*1）マイアセット画面から「XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXX」のアクセスコードを発行してください。
+<br>
+マイアセット → <a href="https://keyaki-studio.onrender.com/" target="_blank">https://keyaki-studio.onrender.com/</a>
+<br>
+
+<div style="border: 1px solid #ccc; border-radius: 12px; overflow: hidden; display: inline-block; padding: 12px 0px;">
+  <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-11.png" style="display: block; border-radius: 12px;">
+</div>
 <br>
 <br>
 
 # 注意
 
-* スクリプトやシェーダーをAssetBuild化することはできません。
-* 同名のアセット名を使うことはできません。
+- スクリプトやシェーダーを AssetBuild 化することはできません。
+- 同名のアセット名を使うことはできません。
+
+<br>
 
 # KEYAKI STUDIO - My Assets
 
-KEYAKI STUDI MyAssetsはPCでAssetBuildした3DコンテンツをiPhone/Androidのアプリにインポートするときに便利なWebサイトです。このサイトを経由して3DコンテンツをPCからアプリにトランスポートすることができます。
+KEYAKI STUDI MyAssets は PC で AssetBuild した 3D コンテンツを iPhone/Android のアプリにインポートするときに便利な Web サイトです。このサイトを経由して 3D コンテンツを PC からアプリにトランスポートすることができます。
 <br>
 <br>
 <img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-09.png">
 <br>
 ※ サイトにアクセスする方法
 <br>
-アプリのTOP画面の\"マイアセット\"でマイアセット一覧を開き、\"マイアページ\"ボタンを押下してください。
+アプリの TOP 画面の"マイアセット"でマイアセット一覧を開き、"マイアページ"ボタンを押下してください。
 
 # 運営
 
-* Yuta Ueda / ケヤキ開発
-* https://twitter.com/keyaki_kaihatsu
+- Yuta Ueda / ケヤキ開発
+- https://twitter.com/keyaki_kaihatsu
 
 # ライセンス
 
