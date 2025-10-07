@@ -10,8 +10,16 @@ using UnityEditor;
 
 namespace AvatarStudio
 {
-    public class BuildEditor
+    static public class Config
     {
+        static public bool DEBUG = false;
+
+        static public string DOMAIN => DEBUG ? "http://localhost:3000" : "https://keyaki-studio.onrender.com";
+
+        static public string ASSETS_URL => DOMAIN + "/assets";
+
+        static public string ASSET_FILES_API_URL => DOMAIN + "/api/v1/asset_files";
+
         static public string ROOT_PATH
         {
             get
@@ -21,7 +29,10 @@ namespace AvatarStudio
                 return dir.Parent.FullName + "/AssetBundles";
             }
         }
+    }
 
+    public class BuildEditor
+    {
         [MenuItem("Assets/Keyaki Studio/Asset Build (From Prefab)", false, 0)]
         static public void OnAssets()
         {
@@ -46,7 +57,7 @@ namespace AvatarStudio
 
         static void SetUp()
         {
-            var path = ROOT_PATH;
+            var path = Config.ROOT_PATH;
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
@@ -74,7 +85,7 @@ namespace AvatarStudio
 
         static void SetUp()
         {
-            var path = BuildEditor.ROOT_PATH;
+            var path = Config.ROOT_PATH;
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
@@ -102,7 +113,7 @@ namespace AvatarStudio
 
         static void SetUp()
         {
-            var path = BuildEditor.ROOT_PATH;
+            var path = Config.ROOT_PATH;
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
@@ -316,7 +327,7 @@ namespace AvatarStudio
             minSize = new Vector2(380, 800);
             position = new Rect(Vector2.zero, minSize);
 
-            _outputPath = BuildEditor.ROOT_PATH;
+            _outputPath = Config.ROOT_PATH;
 
             if (PlayerPrefs.HasKey("prefrence"))
             {
@@ -428,7 +439,7 @@ namespace AvatarStudio
                     EditorGUIUtility.AddCursorRect(linkRect, MouseCursor.Link);
                     if (GUI.Button(linkRect, Locale.Get("get_access_code"), linkStyle))
                     {
-                        Application.OpenURL("https://avatar-studio-react.onrender.com/temporary_sessions/new?redirect_to=new_temporary_sessions");
+                        Application.OpenURL("https://keyaki-studio.onrender.com/temporary_sessions/new?redirect_to=new_temporary_sessions");
                     }
 
                     GUILayout.Space(15);
@@ -456,8 +467,7 @@ namespace AvatarStudio
                             {
                                 if (EditorUtility.DisplayDialog(Locale.Get("success"), Locale.Get("success_message"), "OK"))
                                 {
-                                    Application.OpenURL("https://avatar-studio-react.onrender.com/assets");
-                                    // Application.OpenURL("http://localhost:3000/assets");
+                                    Application.OpenURL(Config.ASSETS_URL);
                                 }
                             }
                             else
@@ -517,8 +527,7 @@ namespace AvatarStudio
             form.AddBinaryData("file", zipBytes, "upload.zip", "application/zip");
             form.AddField("asset_type", assetType);
 
-            using (var www = UnityWebRequest.Post("https://avatar-studio-react.onrender.com/api/v1/asset_files", form))
-            // using (var www = UnityWebRequest.Post("http://localhost:3000/api/v1/asset_files", form))
+            using (var www = UnityWebRequest.Post(Config.ASSET_FILES_API_URL, form))
             {
                 www.SendWebRequest();
                 while (!www.isDone)
