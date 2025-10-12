@@ -47,7 +47,7 @@ This project lets you import Unity prefabs into Keyaki Studio by using Unity's A
 **Unity**
 
 ```bash
- Version   >>>  Unity 2022.3.61f1
+ Version   >>>  Unity 6000.0.58f2
  Platform  >>>  iOS, Android, Windows, macOS
 ```
 
