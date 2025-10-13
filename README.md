@@ -49,6 +49,7 @@ https://keyaki-kaihatsu.booth.pm/items/5381402
 ```bash
  Version   >>>  Unity 6000.0.58f2
  Platform  >>>  iOS, Android, Windows, macOS
+ Pipeline  >>> Universal Render Pipeline (URP)
 ```
 
 **VRM**

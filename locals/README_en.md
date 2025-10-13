@@ -49,6 +49,7 @@ This project lets you import Unity prefabs into Keyaki Studio by using Unity's A
 ```bash
  Version   >>>  Unity 6000.0.58f2
  Platform  >>>  iOS, Android, Windows, macOS
+ Pipeline  >>> Universal Render Pipeline (URP)
 ```
 
 **VRM**
