@@ -47,7 +47,7 @@ https://keyaki-kaihatsu.booth.pm/items/5381402
 **Unity**
 
 ```bash
- Version   >>>  Unity 6000.0.58f2
+ Version   >>>  Unity 2022.3 LTS (2022.3.62f3)
  Platform  >>>  iOS, Android, Windows, macOS
  Pipeline  >>> Universal Render Pipeline (URP)
 ```

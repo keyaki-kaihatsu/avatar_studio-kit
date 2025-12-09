@@ -193,12 +193,12 @@ namespace AvatarStudio
                 BuildPipeline.BuildAssetBundles(winPath, builds.ToArray(), option, BuildTarget.StandaloneWindows64);
             }
 
+            var manifest = new AssetManifestData();
+            manifest.asset_id = assetId;
+            File.WriteAllText(outputPath + "/manifest.json", JsonUtility.ToJson(manifest));
+
             if (pref.enabled_compression)
             {
-                var manifest = new AssetManifestData();
-                manifest.asset_id = assetId;
-                File.WriteAllText(outputPath + "/manifest.txt", JsonUtility.ToJson(manifest));
-
                 if (File.Exists(outputPath + ".zip"))
                     File.Delete(outputPath + ".zip");
 
