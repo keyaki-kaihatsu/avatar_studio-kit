@@ -73,7 +73,7 @@ https://github.com/vrm-c/UniVRM/releases
 </small>
 <br>
 <br>
-・ Avatar Asset Build (From VRM)
+・ Avatar Asset Build (From Prefab)
 <br>
 <small>
     ∟ VRMをAssetBundle化します。出力されたフォルダ全体をアプリのvrm_filesフォルダにコピーしてください。
@@ -82,18 +82,14 @@ https://github.com/vrm-c/UniVRM/releases
 </small>
 <br>
 <br>
-・ Animation Asset Build (From VRM Prefab + Animation)
+・ Animation Build (From AnimationClip)
 <br>
 <small>
-    ∟ アニメーション付きVRMをAssetBundle化します。出力されたフォルダ全体をアプリのanimationsフォルダにコピーしてください。
+    ∟ AnimaitonClipをAssetBundle化します。出力されたフォルダ全体をアプリのanimationsフォルダにコピーしてください。
     <br>
     ∟ アニメーションファイル（FBX・GLB）の読み込みのパフォーマンスが悪いと感じた場合にご活用ください。
-    <br>
-    ∟ AnimatorのAnimationControllerのデフォルト状態に任意のアニメーションを設定し、Motion Timeに「MotionTime」パラメータを設定してください。
 </small>
 <br>
-<br>
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-07.png">
 <br>
 ・ Convert Animation (From .txt)
 <br>
@@ -102,7 +98,6 @@ https://github.com/vrm-c/UniVRM/releases
     <br>
     ∟ アプリ > 編集画面 > アバターパネル > AnimationClipデータの出力 > トレースボタン（長押し）で生成したトレースファイルをAnimatoinClipおよびAnimation.Controllerに出力します。
 </small>
-<br>
 <br>
 <br>
 3. ダイアログの入力をしてください。特に設定の必要がなければそのまま「Build」ボタンを押下してください。

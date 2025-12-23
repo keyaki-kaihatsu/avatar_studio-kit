@@ -73,7 +73,7 @@ https://github.com/vrm-c/UniVRM/releases
 </small>
 <br>
 <br>
-・ Avatar Asset Build (From VRM)
+・ Avatar Asset Build (From Prefab)
 <br>
 <small>
     ∟ Converts a VRM file into an AssetBundle. Copy the output folder to the app's vrm_files folder.
@@ -82,18 +82,12 @@ https://github.com/vrm-c/UniVRM/releases
 </small>
 <br>
 <br>
-・ Animation Asset Build (From VRM Prefab + Animation)
+・ Animation Build (From AnimationClip)
 <br>
 <small>
-    ∟ Converts a VRM prefab with animation into an AssetBundle. Copy the output folder to the app's animations folder.
-    <br>
-    ∟ Use this if loading animation files (FBX/GLB) is slow.
-    <br>
-    ∟ Set your desired animation as the default in the Animator's AnimationController, and set the "MotionTime" parameter for motion time.
+    ∟ Converts an AnimationClip into an AssetBundle. Copy the entire output folder to the app's animations folder.
 </small>
 <br>
-<br>
-<img src="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/avatar_studio-kit/readme/feature-07.png">
 <br>
 ・ Convert Animation (From .txt)
 <br>
@@ -102,7 +96,6 @@ https://github.com/vrm-c/UniVRM/releases
     <br>
     ∟ In the app: Go to Edit screen > Avatar panel > Export AnimationClip data, then long-press the trace button to generate a trace file. This can be output as an AnimationClip and Animation.Controller.
 </small>
-<br>
 <br>
 <br>
 3. Fill in the dialog as needed. If you don't need to change any settings, just press the "Build" button.
