@@ -65,7 +65,7 @@ namespace AvatarStudio
 
     public class AvatarBuildEditor
     {
-        [MenuItem("Assets/Keyaki Studio/Avatar Asset Build (From VRM)", false, 1)]
+        [MenuItem("Assets/Keyaki Studio/Avatar Asset Build (From Prefab)", false, 1)]
         static public void OnAssets()
         {
             SetUp();
@@ -93,23 +93,41 @@ namespace AvatarStudio
 
     public class AnimationBuildEditor
     {
-        [MenuItem("Assets/Keyaki Studio/Animation Asset Build (From VRM Prefab + Animation)", false, 2)]
+        [MenuItem("Assets/Keyaki Studio/Animation Build (From AnimationClip)", false, 2)]
         static public void OnAssets()
         {
             SetUp();
 
             if (Selection.objects.Length > 0)
             {
-                if (Selection.objects[0] is GameObject obj)
+                if (Selection.objects[0] is AnimationClip clip)
                 {
-                    // VRM
-                    VRMBuilder.AnimationBuild(obj);
+                    // Animation Clip
+                    VRMBuilder.AnimationClipBuild(clip);
                     return;
                 }
             }
 
             Debug.LogError("[KeyakiStudioKit] Not Selected.");
         }
+
+        // [MenuItem("Assets/Keyaki Studio/Animation Asset Build (From VRM Prefab + Animation)", false, 2)]
+        // static public void OnAssets()
+        // {
+        //     SetUp();
+
+        //     if (Selection.objects.Length > 0)
+        //     {
+        //         if (Selection.objects[0] is GameObject obj)
+        //         {
+        //             // Animation Clip
+        //             VRMBuilder.AnimationBuild(obj);
+        //             return;
+        //         }
+        //     }
+
+        //     Debug.LogError("[KeyakiStudioKit] Not Selected.");
+        // }
 
         static void SetUp()
         {
@@ -268,6 +286,28 @@ namespace AvatarStudio
             };
         }
 
+        static public void AnimationClipBuild(AnimationClip clip)
+        {
+            var inputPath = AssetDatabase.GetAssetPath(clip);
+
+            // Property Window
+            var proptyModalWindow = ScriptableObject.CreateInstance<BuildPropertyEditor>();
+            proptyModalWindow._assetType = "animation";
+            proptyModalWindow.Show("AnimationClip Build", inputPath);
+
+            proptyModalWindow._completion = (outputPath, assetId) =>
+            {
+                // Save
+                EditorUtility.SetDirty(clip);
+
+                Directory.CreateDirectory(outputPath);
+
+                AssetBuild(inputPath, outputPath, assetId);
+
+                System.Diagnostics.Process.Start(outputPath);
+            };
+        }
+
         static public void AnimationBuild(GameObject obj)
         {
             var inputPath = AssetDatabase.GetAssetOrScenePath(obj);
@@ -387,13 +427,58 @@ namespace AvatarStudio
 
                     EditorGUILayout.LabelField("#3 " + Locale.Get("build_target"), EditorStyles.wordWrappedLabel);
 
-                    _preference.enabled_build_ios = EditorGUILayout.Toggle("iOS", _preference.enabled_build_ios);
+                    var isIOSInstalled = BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.iOS, BuildTarget.iOS);
+                    if (isIOSInstalled) 
+                    {
+                        _preference.enabled_build_ios = EditorGUILayout.Toggle("iOS", _preference.enabled_build_ios);
+                    }
+                    else
+                    {
+                        GUI.enabled = false;
+                        _preference.enabled_build_ios = EditorGUILayout.Toggle("iOS", false);
+                        EditorGUILayout.LabelField("Not Installed", EditorStyles.boldLabel);
+                        GUI.enabled = true;
+                    
+                    }
 
-                    _preference.enabled_build_android = EditorGUILayout.Toggle("Android", _preference.enabled_build_android);
+                    var isAndroidInstalled = BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android);
+                    if (isAndroidInstalled)
+                    {
+                        _preference.enabled_build_android = EditorGUILayout.Toggle("Android", _preference.enabled_build_android);
+                    }
+                    else
+                    {
+                        GUI.enabled = false;
+                        _preference.enabled_build_android = EditorGUILayout.Toggle("Android", false);
+                        EditorGUILayout.LabelField("Not Installed", EditorStyles.boldLabel);
+                        GUI.enabled = true;
+                    }
 
-                    _preference.enabled_build_standalone_windows64 = EditorGUILayout.Toggle("Windows", _preference.enabled_build_standalone_windows64);
+                    var isWinInstalled = BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+                    if (isWinInstalled)
+                    {
+                        _preference.enabled_build_standalone_windows64 = EditorGUILayout.Toggle("Windows", _preference.enabled_build_standalone_windows64);
+                    }
+                    else
+                    {
+                        GUI.enabled = false;
+                        _preference.enabled_build_standalone_windows64 = EditorGUILayout.Toggle("Windows", false);
+                        EditorGUILayout.LabelField("Not Installed", EditorStyles.boldLabel);
+                        GUI.enabled = true;
+                    }
 
-                    _preference.enabled_build_standalone_osx = EditorGUILayout.Toggle("MacOS", _preference.enabled_build_standalone_osx);
+                    var isMacInstalled = BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX);
+                    if (isMacInstalled)
+                    {
+                        _preference.enabled_build_standalone_osx = EditorGUILayout.Toggle("MacOS", _preference.enabled_build_standalone_osx);
+                    }
+                    else
+                    {
+                        GUI.enabled = false;
+                        _preference.enabled_build_standalone_osx = EditorGUILayout.Toggle("MacOS", false);
+                        EditorGUILayout.LabelField("Not Installed", EditorStyles.boldLabel);
+                        GUI.enabled = true;
+                    }
 
                     GUILayout.Space(15);
 
