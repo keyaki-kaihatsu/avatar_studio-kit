@@ -140,7 +140,7 @@ https://github.com/vrm-c/UniVRM/releases
 </div>
 
 <br>
-（\*1）マイアセット画面から「XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXX」のアクセスコードを発行してください。
+（*1）マイアセット画面から「XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXX」のアクセスコードを発行してください。
 <br>
 マイアセット → <a href="https://keyaki-studio.onrender.com/" target="_blank">https://keyaki-studio.onrender.com/</a>
 <br>
